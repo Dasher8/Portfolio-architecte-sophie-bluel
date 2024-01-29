@@ -86,3 +86,38 @@ newDisplayWorks();
    * - Faire la modal en javscript
    */
   
+  const categoriesContainer = document.querySelector('.categories');
+  
+  DisplayCategories = () => {
+
+    fetch('http://localhost:5678/api/categories')
+
+    .then(response => {
+      return response.json();  // On ne récupère que le contenu que l'on envoi dans le prochain then
+    })
+
+    .then(categories => { 
+
+    categories.forEach(category => {
+
+      const button = document.createElement('button');
+      button.classList.add('category-btn');
+
+      button.setAttribute('id', category.id);
+
+      button.innerHTML = `
+      ${category.name}
+      `;
+
+      categoriesContainer.appendChild(button);
+      
+      });
+    })  
+
+    .catch(error => {
+      console.error('Une erreur est survenue');
+    });
+    
+  }
+
+  DisplayCategories();
