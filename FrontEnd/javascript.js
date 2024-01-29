@@ -98,6 +98,14 @@ newDisplayWorks();
 
     .then(categories => { 
 
+      const allButton = document.createElement('button');
+      allButton.classList.add('category-btn');
+      allButton.setAttribute('id', 'all');
+
+      allButton.innerHTML = 'Tous';
+
+      categoriesContainer.appendChild(allButton);
+
     categories.forEach(category => {
 
       const button = document.createElement('button');
