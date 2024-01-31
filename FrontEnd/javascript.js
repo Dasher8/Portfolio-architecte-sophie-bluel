@@ -92,11 +92,19 @@ DisplayCategories = () => {
       const allButton = document.createElement("button");
       allButton.classList.add("category-btn");
       allButton.setAttribute("id", "all");
-      allButton.classList.add("btn-active");
-
+      //allButton.classList.add("btn-active");
       allButton.innerHTML = "Tous";
 
+      allButton.addEventListener("click", () => {
+        document.querySelectorAll(".category-btn").forEach((btn) => {
+          btn.classList.remove("btn-active");
+        });
+        allButton.classList.add("btn-active");
+      });
+
       categoriesContainer.appendChild(allButton);
+
+
 
       categories.forEach((category) => {
         const button = document.createElement("button");
@@ -107,6 +115,15 @@ DisplayCategories = () => {
         button.innerHTML = `
       ${category.name}
       `;
+
+      button.addEventListener("click", () => {
+
+        document.querySelectorAll(".category-btn").forEach((btn) => {
+          btn.classList.remove("btn-active");
+        });
+        button.classList.add("btn-active");
+        //filterAndDisplayWorks(category.id);
+      });
 
         categoriesContainer.appendChild(button);
       });
