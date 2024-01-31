@@ -147,6 +147,12 @@ li:hover {
 	background: #FFFEF8;
 	padding: 20px;
 	margin: 10px;
+	cursor: pointer;
+}
+
+.category-btn .active {
+	background: #1D6154;
+
 }
 
 .gallery {
