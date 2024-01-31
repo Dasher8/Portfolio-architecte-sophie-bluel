@@ -150,7 +150,8 @@ li:hover {
 	cursor: pointer;
 }
 
-.category-btn .active {
+ .btn-active {
+	color: #FFF;
 	background: #1D6154;
 
 }

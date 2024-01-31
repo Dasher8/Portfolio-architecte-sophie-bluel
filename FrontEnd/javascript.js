@@ -92,6 +92,7 @@ DisplayCategories = () => {
       const allButton = document.createElement("button");
       allButton.classList.add("category-btn");
       allButton.setAttribute("id", "all");
+      allButton.classList.add("btn-active");
 
       allButton.innerHTML = "Tous";
 
