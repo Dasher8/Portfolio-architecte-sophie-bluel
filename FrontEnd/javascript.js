@@ -45,6 +45,7 @@ newDisplayWorks = () => {
         // Création d'un nouveau noeud "figure"
         const figure = document.createElement("figure");
         figure.classList.add("ma-nouvelle-classe"); // On peux ajouter une nouvelle classe
+        figure.setAttribute("id", `${work.categoryId}`);
 
         // On modifie le contenu HTML du noeud (attention de ne pas oublier les backtik => ``)
         figure.innerHTML = `
