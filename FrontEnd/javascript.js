@@ -92,7 +92,6 @@ DisplayCategories = () => {
       const allButton = document.createElement("button");
       allButton.classList.add("category-btn");
       allButton.setAttribute("id", "all");
-      //allButton.classList.add("btn-active");
       allButton.innerHTML = "Tous";
 
       allButton.addEventListener("click", () => {
@@ -100,6 +99,7 @@ DisplayCategories = () => {
           btn.classList.remove("btn-active");
         });
         allButton.classList.add("btn-active");
+        filterAndDisplayWorks();
       });
 
       categoriesContainer.appendChild(allButton);
@@ -122,7 +122,7 @@ DisplayCategories = () => {
           btn.classList.remove("btn-active");
         });
         button.classList.add("btn-active");
-        //filterAndDisplayWorks(category.id);
+        filterAndDisplayWorks(category.id);
       });
 
         categoriesContainer.appendChild(button);
@@ -135,3 +135,22 @@ DisplayCategories = () => {
 };
 
 DisplayCategories();
+
+filterAndDisplayWorks = (categoryId) => {
+  console.log("Filtering by category ID:", categoryId);
+  const galleryContainer = document.querySelector(".gallery");
+
+  // Select all figures initially created and hide them
+  const allFigures = galleryContainer.querySelectorAll(".ma-nouvelle-classe");
+  allFigures.forEach((figure) => {
+    figure.style.display = "none";
+  });
+
+  // If categoryId is provided, show only figures with the corresponding categoryId
+  if (categoryId) {
+    const selectedFigures = galleryContainer.querySelectorAll(`.ma-nouvelle-classe[id="${categoryId}"]`);
+    selectedFigures.forEach((figure) => {
+      figure.style.display = ""; // Set to an empty string to reset the display property
+    });
+  }
+};
