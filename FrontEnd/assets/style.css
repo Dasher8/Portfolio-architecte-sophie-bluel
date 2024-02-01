@@ -65,6 +65,14 @@ header {
 	height: 22px;
 }
 
+.login-title {
+	color: #1D6154;
+	font-size: 30px;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 60px;
+}
+
 section {
 	margin: 50px 0
 }
