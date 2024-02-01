@@ -25,8 +25,8 @@ async function displayArchitectWorks() {
   console.log("Architect's Works:", works);
 }
 
-const galleryContainer = document.querySelector(".gallery");
 
+const galleryContainer = document.querySelector(".gallery");
 /**
  * Récupère et affiche la liste des projets
  */
@@ -104,8 +104,6 @@ DisplayCategories = () => {
 
       categoriesContainer.appendChild(allButton);
 
-
-
       categories.forEach((category) => {
         const button = document.createElement("button");
         button.classList.add("category-btn");
@@ -116,14 +114,13 @@ DisplayCategories = () => {
       ${category.name}
       `;
 
-      button.addEventListener("click", () => {
-
-        document.querySelectorAll(".category-btn").forEach((btn) => {
-          btn.classList.remove("btn-active");
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".category-btn").forEach((btn) => {
+            btn.classList.remove("btn-active");
+          });
+          button.classList.add("btn-active");
+          filterAndDisplayWorks(category.id);
         });
-        button.classList.add("btn-active");
-        filterAndDisplayWorks(category.id);
-      });
 
         categoriesContainer.appendChild(button);
       });
@@ -140,17 +137,21 @@ filterAndDisplayWorks = (categoryId) => {
   console.log("Filtering by category ID:", categoryId);
   const galleryContainer = document.querySelector(".gallery");
 
-  // Select all figures initially created and hide them
-  const allFigures = galleryContainer.querySelectorAll(".ma-nouvelle-classe");
-  allFigures.forEach((figure) => {
-    figure.style.display = "none";
-  });
-
-  // If categoryId is provided, show only figures with the corresponding categoryId
   if (categoryId) {
-    const selectedFigures = galleryContainer.querySelectorAll(`.ma-nouvelle-classe[id="${categoryId}"]`);
-    selectedFigures.forEach((figure) => {
-      figure.style.display = ""; // Set to an empty string to reset the display property
+    // Select all figures initially created and hide them
+    const allFigures = galleryContainer.querySelectorAll(".ma-nouvelle-classe");
+    allFigures.forEach((figure) => {
+      if (figure.getAttribute("id") === categoryId.toString()) {
+        figure.style.display = ""; // Show figures matching the selected category
+      } else {
+        figure.style.display = "none";
+      }
+    });
+  } else {
+    // If no category is selected (All button clicked), show all figures
+    const allFigures = galleryContainer.querySelectorAll(".ma-nouvelle-classe");
+    allFigures.forEach((figure) => {
+      figure.style.display = ""; // Show all figures ; Set to an empty string to reset the display property to its default value (which is determined by the browser's default styling)
     });
   }
 };
