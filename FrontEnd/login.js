@@ -54,7 +54,11 @@ document.getElementById("form").addEventListener("submit", function (event) {
   
   
     const form = document.getElementById("form");
-    form.parentNode.insertBefore(errorDiv, form);
+    const submitButton = form.querySelector(".login-btn");
+
+    // Insert the error message div before the submit button
+    form.insertBefore(errorDiv, submitButton);
+    
   }
   
   
