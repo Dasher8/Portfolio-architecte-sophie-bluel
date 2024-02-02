@@ -58,6 +58,21 @@ document.getElementById("form").addEventListener("submit", function (event) {
 
     // Insert the error message div before the submit button
     form.insertBefore(errorDiv, submitButton);
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    
+    emailInput.addEventListener('input', removeErrorMessage);
+    passwordInput.addEventListener('input', removeErrorMessage);
+    
+    // Function to remove the error message
+    function removeErrorMessage() {
+        const errorDiv = document.querySelector('.error-message');
+        
+        // Check if the error message div exists before attempting to remove it
+        if (errorDiv) {
+            errorDiv.remove();
+        }
+    }
     
   }
   
