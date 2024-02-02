@@ -162,8 +162,8 @@ header {
 }
 
 .error-message {
-	color: red;
-	padding-top: 20px;
+  color: red;
+  padding-top: 20px;
 }
 
 .email-container,
@@ -244,8 +244,8 @@ nav li {
 }
 
 ul a {
-	text-decoration: none;
-	color: #000;
+  text-decoration: none;
+  color: #000;
 }
 
 li:hover {
@@ -302,6 +302,11 @@ li:hover {
   padding: 20px;
   margin: 10px;
   cursor: pointer;
+}
+
+.category-btn:hover {
+  color: #fff;
+  background: #1d6154;
 }
 
 .btn-active {
@@ -370,9 +375,9 @@ footer nav ul {
 }
 
 .login-footer {
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	right: 20px;
-	background: #FFFFFF;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  background: #ffffff;
 }
