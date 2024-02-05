@@ -36,7 +36,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
         .catch((error) => {
           console.error("Login failed:", error.message);
           // Show an error message to the user
-          showError("Invalid email or password");
+          showError("Erreur dans l’identifiant ou le mot de passe");
         });
         //responsible for handling the case where either the email or password (or both) are empty
     } else {
