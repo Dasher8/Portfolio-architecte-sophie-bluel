@@ -31,7 +31,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
           // Store the token in localStorage
           localStorage.setItem("authToken", data.token);
           // Redirect to the home page
-          window.location.href = "index.html"; // Replace with the desired home page URL
+          window.location.href = "home_edit.html"; // Replace with the desired home page URL
         })
         .catch((error) => {
           console.error("Login failed:", error.message);
