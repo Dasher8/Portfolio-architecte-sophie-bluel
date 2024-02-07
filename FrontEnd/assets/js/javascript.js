@@ -77,11 +77,15 @@ const displayCategories = (categories) => {
 
   categoriesContainer.appendChild(newButton);
 
-  // Event au click sur le btn tous
-  newButton.addEventListener("click", async () => {
-    const works = await getWorks(); // Récupère tous les projets
-    displayWorks(works); // Afficher les projets
+ // Event au click sur le btn tous
+newButton.addEventListener("click", async () => {
+  document.querySelectorAll(".category-btn").forEach((btn) => {
+    btn.classList.remove("btn-active");
   });
+  newButton.classList.add("btn-active"); // Ajouter la classe active au bouton "Tous"
+  const works = await getWorks(); // Récupère tous les projets
+  displayWorks(works); // Afficher les projets
+});
 
   // Afficahge des catégories
   categories.forEach((category) => {
@@ -94,6 +98,10 @@ const displayCategories = (categories) => {
     categoriesContainer.appendChild(button);
 
     button.addEventListener("click", async () => {
+      document.querySelectorAll(".category-btn").forEach((btn) => {
+        btn.classList.remove("btn-active");
+      });
+      button.classList.add("btn-active"); // Ajouter la classe active au bouton cliqué
       const works = await getWorks(category.id); // Récupère tous les projets
       displayWorks(works); // Afficher les projets
     });
