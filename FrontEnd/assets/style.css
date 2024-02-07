@@ -137,6 +137,9 @@ body {
 }
 
 .edit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 59px;
   background: #000000;
@@ -145,6 +148,17 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  box-sizing: border-box;
+}
+
+.edit-txt {
+  color: #ffffff;
+}
+#edit-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 11px;
+  color: #ffffff;
 }
 
 header {

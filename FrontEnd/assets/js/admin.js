@@ -8,9 +8,12 @@
  * 6) Dans la seconde modale, ajout d'un formulaire
  */
 
-const token = localStorage.getItem('authToken')
+const token = localStorage.getItem('authToken');
+const editContainer = document.querySelector(".edit-container");
 
 //if(token){
     // Mettre ton code ici
 
 //}
+
+const editButton = 
