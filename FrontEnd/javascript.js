@@ -1,3 +1,10 @@
+/**
+ * Variables
+ */
+const galleryContainer = document.querySelector(".gallery");
+const categoriesContainer = document.querySelector(".categories");
+
+/*
 async function displayArchitectWorks() {
   const response = await fetch("http://localhost:5678/api/works");
   const works = await response.json();
@@ -23,10 +30,8 @@ async function displayArchitectWorks() {
   });
 
   console.log("Architect's Works:", works);
-}
+}*/
 
-
-const galleryContainer = document.querySelector(".gallery");
 /**
  * Récupère et affiche la liste des projets
  */
@@ -44,7 +49,7 @@ newDisplayWorks = () => {
       works.forEach((work) => {
         // Création d'un nouveau noeud "figure"
         const figure = document.createElement("figure");
-        figure.classList.add("ma-nouvelle-classe"); // On peux ajouter une nouvelle classe
+        //figure.classList.add("ma-nouvelle-classe"); // On peux ajouter une nouvelle classe
         figure.setAttribute("id", `${work.categoryId}`);
 
         // On modifie le contenu HTML du noeud (attention de ne pas oublier les backtik => ``)
@@ -64,36 +69,22 @@ newDisplayWorks = () => {
     });
 };
 
-newDisplayWorks();
-
-//displayArchitectWorks();
-
 /**
- * TODO :
- * - Faire exactement pareil pour les catégories
- *
- * - Faire le design de la page connexion
- * - Partie JS:
- * --- Récupérer en JS les données du formulaire lorsque l'on clique sur le bouton "connexion"
- * --- Avec fetch (POST), envoyer ces données pour récupérer un token
- *
- * - Faire la modal en javscript
+ * Récupère et affiche la liste des catégories
  */
-
-const categoriesContainer = document.querySelector(".categories");
-
-DisplayCategories = () => {
+displayCategories = () => {
   fetch("http://localhost:5678/api/categories")
     .then((response) => {
       return response.json(); // On ne récupère que le contenu que l'on envoi dans le prochain then
     })
-
     .then((categories) => {
+      // Création du boutton "Tous"
       const allButton = document.createElement("button");
       allButton.classList.add("category-btn");
       allButton.setAttribute("id", "all");
       allButton.innerHTML = "Tous";
 
+      // Event au click sur le btn tous
       allButton.addEventListener("click", () => {
         document.querySelectorAll(".category-btn").forEach((btn) => {
           btn.classList.remove("btn-active");
@@ -131,8 +122,9 @@ DisplayCategories = () => {
     });
 };
 
-DisplayCategories();
-
+/**
+ * Trie les projets
+ */
 filterAndDisplayWorks = (categoryId) => {
   console.log("Filtering by category ID:", categoryId);
   const galleryContainer = document.querySelector(".gallery");
@@ -155,3 +147,19 @@ filterAndDisplayWorks = (categoryId) => {
     });
   }
 };
+
+newDisplayWorks();
+displayCategories();
+
+
+
+
+
+
+
+
+
+
+
+
+
