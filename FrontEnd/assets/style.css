@@ -161,6 +161,12 @@ body {
   color: #ffffff;
 }
 
+.edit-button {
+  color: #000000;
+  border: none;
+  font-size: 14px;
+}
+
 header {
   display: flex;
   justify-content: space-between;

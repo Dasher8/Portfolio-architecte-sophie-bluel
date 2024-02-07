@@ -9,11 +9,15 @@
  */
 
 const token = localStorage.getItem('authToken');
-const editContainer = document.querySelector(".edit-container");
+const editContainer = document.querySelector(".portfolio");
 
 //if(token){
     // Mettre ton code ici
 
 //}
 
-const editButton = 
+const editButton = document.createElement("button");
+editButton.classList.add("edit-button");
+editButton.innerHTML = "modifier";
+
+editContainer.appendChild(editButton);
