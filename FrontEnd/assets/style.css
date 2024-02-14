@@ -183,6 +183,19 @@ body {
   right: 25px;
 }
 
+.works-container img {
+  max-width: 20%;
+  height: 102.57px;
+  margin: 9px;
+}
+
+.works-container {
+  width: calc(100% - 80px);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .add-button {
   width: 237px;
   height: 36px;

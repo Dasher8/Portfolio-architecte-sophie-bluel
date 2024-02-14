@@ -18,18 +18,48 @@ editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>modifier';
 
 editContainer.appendChild(editButton);
 
- // Find the <h2> element
- const h2Element = editContainer.querySelector("h2");
+// Find the <h2> element
+const h2Element = editContainer.querySelector("h2");
 
- // Insert the edit button just after the <h2> element
- // beforeend insert the button in the h2, need to fix the position later
- h2Element.insertAdjacentElement("beforeend", editButton);
+// Insert the edit button just after the <h2> element
+// beforeend insert the button in the h2, need to fix the position later
+h2Element.insertAdjacentElement("beforeend", editButton);
 
 // Add event listener to the edit button
 editButton.addEventListener("click", openModal);
 
+// Function to fetch works from the API and display them in the modal content
+async function displayWorksInModal() {
+    try {
+        // Fetch works from the API
+        const response = await fetch('http://localhost:5678/api/works');
+        const works = await response.json();
+
+        // Create a new div to hold the works images
+        const worksContainer = document.createElement('div');
+        worksContainer.classList.add('works-container');
+
+        // Iterate over the works and create HTML elements for each photo
+        works.forEach(work => {
+            // Create image element
+            const image = document.createElement('img');
+            image.src = work.imageUrl;
+            image.alt = work.title;
+
+            // Append image to the works container
+            worksContainer.appendChild(image);
+        });
+
+        // Select the modal content element
+        const modalContent = document.querySelector('.modal-content');
+        // Append the works container to the modal content
+        modalContent.appendChild(worksContainer);
+    } catch (error) {
+        console.error('Error fetching or displaying works:', error);
+    }
+}
+
 // Function to create a modal with the ability to close it
-// Function to open modal
 function openModal() {
     // Create modal container
     const modalContainer = document.createElement("div");
@@ -58,6 +88,9 @@ function openModal() {
 
     // Append modal container to body
     document.body.appendChild(modalContainer);
+
+    // Display works in modal content
+    displayWorksInModal();
 }
 
 // Function to close modal
@@ -65,6 +98,3 @@ function closeModal() {
     const modalContainer = document.querySelector(".modal-container");
     modalContainer.remove();
 }
-
-// Add event listener to the edit button
-editButton.addEventListener("click", openModal);
