@@ -11,19 +11,53 @@
 const token = localStorage.getItem('authToken');
 const editContainer = document.querySelector(".portfolio");
 
-//if(token){
-    // Mettre ton code ici
-
-//}
-
+// Create the edit button
 const editButton = document.createElement("button");
 editButton.classList.add("edit-button");
 editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>modifier';
 
 editContainer.appendChild(editButton);
 
-// Find the <h2> element
-const h2Element = editContainer.querySelector("h2");
+ // Find the <h2> element
+ const h2Element = editContainer.querySelector("h2");
 
-// Insert the edit button just after the <h2> element
-h2Element.insertAdjacentElement("afterend", editButton);
+ // Insert the edit button just after the <h2> element
+ // beforeend insert the button in the h2, need to fix the position later
+ h2Element.insertAdjacentElement("beforeend", editButton);
+
+// Add event listener to the edit button
+editButton.addEventListener("click", openModal);
+
+// Function to create a modal with the ability to close it
+// Function to open modal
+function openModal() {
+    // Create modal container
+    const modalContainer = document.createElement("div");
+    modalContainer.classList.add("modal-container");
+
+    // Create modal content
+    const modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+
+    // Add close button
+    const closeButton = document.createElement("button");
+    closeButton.classList.add("close-button");
+    closeButton.innerHTML = "&times;";
+    closeButton.addEventListener("click", closeModal);
+    modalContent.appendChild(closeButton);
+
+    // Append modal content to modal container
+    modalContainer.appendChild(modalContent);
+
+    // Append modal container to body
+    document.body.appendChild(modalContainer);
+}
+
+// Function to close modal
+function closeModal() {
+    const modalContainer = document.querySelector(".modal-container");
+    modalContainer.remove();
+}
+
+// Add event listener to the edit button
+editButton.addEventListener("click", openModal);
