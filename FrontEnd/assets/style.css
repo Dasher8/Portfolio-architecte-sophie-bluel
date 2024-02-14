@@ -145,41 +145,68 @@ body {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
-
 
 /* Modal Content/Box */
 .modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
   width: 630px;
   height: 688px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border-radius: 10px;
-
+  position: relative;
 }
 
+.modal-title {
+  font-family: 'Work Sans';
+  font-size: 26px;
+  position: absolute;
+  top: 60px;
+}
 /* The Close Button */
 .close-button {
-  font-size: large;
+  font-size: x-large;
   color: #000000;
   float: right;
   background: none;
   border: none;
+  position: absolute;
+  top: 20px;
+  right: 25px;
 }
 
 .add-button {
   width: 237px;
   height: 36px;
-  color: #FFFFFF;
-  background: #1D6154;
+  color: #ffffff;
+  background: #1d6154;
   border: none;
   border-radius: 60px;
-  font-family: 'Syne';
+  font-family: "Syne";
   font-size: 14px;
   font-weight: bold;
+  position: absolute;
+  bottom: 45px;
+}
+
+.add-button::before {
+  content: '';
+  width: 420px;
+  border: 1px solid #B3B3B3;  
+  position: absolute;
+  left: -40%;
+  bottom: 80px;
+  color: #B3B3B3;
+  margin: 0;
+  padding: 0;
 }
 
 .edit-container {

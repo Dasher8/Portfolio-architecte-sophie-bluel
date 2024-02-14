@@ -38,7 +38,7 @@ function openModal() {
     // Create modal content
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
-    modalContent.innerHTML = "<p>Galerie photo</p>";
+    modalContent.innerHTML = '<p class="modal-title">Galerie photo</p>';
 
     const addButton = document.createElement("button");
     addButton.classList.add("add-button");
