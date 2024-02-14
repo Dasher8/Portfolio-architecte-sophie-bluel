@@ -163,6 +163,7 @@ body {
 
 .edit-button {
   color: #000000;
+  background: none;
   border: none;
   font-size: 14px;
 }

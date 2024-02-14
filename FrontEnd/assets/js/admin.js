@@ -18,6 +18,12 @@ const editContainer = document.querySelector(".portfolio");
 
 const editButton = document.createElement("button");
 editButton.classList.add("edit-button");
-editButton.innerHTML = "modifier";
+editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>modifier';
 
 editContainer.appendChild(editButton);
+
+// Find the <h2> element
+const h2Element = editContainer.querySelector("h2");
+
+// Insert the edit button just after the <h2> element
+h2Element.insertAdjacentElement("afterend", editButton);
