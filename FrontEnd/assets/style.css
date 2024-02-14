@@ -170,6 +170,18 @@ body {
   border: none;
 }
 
+.add-button {
+  width: 237px;
+  height: 36px;
+  color: #FFFFFF;
+  background: #1D6154;
+  border: none;
+  border-radius: 60px;
+  font-family: 'Syne';
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .edit-container {
   display: flex;
   justify-content: center;
