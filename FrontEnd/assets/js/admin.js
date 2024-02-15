@@ -150,7 +150,12 @@ function createAddModal() {
   //create Picture Container
   const addPictureContainer = document.createElement("div");
   addPictureContainer.classList.add("add-picture-container");
-  addPictureContainer.innerHTML = '<i class="fa-regular fa-image"></i> <p>jpg, png : 4mo max</p>';
+  addPictureContainer.innerHTML = '<i class="fa-regular fa-image"></i>';
+
+  const photoSizeText = document.createElement("p");
+  photoSizeText.classList.add("picture-size-txt");
+  photoSizeText.innerHTML = 'jpg, png : 4mo max';
+  addPictureContainer.appendChild(photoSizeText);
     
 //create add Picture Button
   const addPictureButton = document.createElement("button");
