@@ -19,6 +19,11 @@ function closeModal() {
   modalContainer.remove();
 }
 
+function closeAddModal() {
+    const addModalContainer = document.querySelector(".add-modal-container");
+    addModalContainer.remove();
+  }
+
 // Function to open the add modal
 function openAddModal() {
   const addModalContainer = document.querySelector(".add-modal-container");
@@ -140,11 +145,26 @@ function createAddModal() {
   addModalContent.classList.add("add-modal-content");
   addModalContent.innerHTML = '<p class="add-modal-title">Ajout photo</p>';
 
+   // Add close button
+   const closeButton = document.createElement("button");
+   closeButton.classList.add("close-button");
+   closeButton.innerHTML = "&times;";
+   closeButton.addEventListener("click", closeAddModal);
+ 
+   addModalContent.appendChild(closeButton);
+
   // Append add modal content to add modal container
   addModalContainer.appendChild(addModalContent);
 
   // Append add modal container to body
   document.body.appendChild(addModalContainer);
+
+   // Close the modal when clicking outside of its content
+   addModalContainer.addEventListener("click", (event) => {
+    if (event.target === addModalContainer) {
+      closeAddModal();
+    }
+  });
 }
 
 // Create the add modal when the page loads
