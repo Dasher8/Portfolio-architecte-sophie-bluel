@@ -139,17 +139,28 @@ body {
 /* The Modal (background) */
 .modal-container {
   position: fixed;
-  z-index: 1; 
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
+  width: 100%;
+  height: 100%;
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.3); 
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.add-modal-container {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* Modal Content/Box */
-.modal-content {
+.modal-content, .add-modal-content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -162,12 +173,13 @@ body {
   position: relative;
 }
 
-.modal-title {
-  font-family: 'Work Sans';
+.modal-title, .add-modal-title {
+  font-family: "Work Sans";
   font-size: 26px;
   position: absolute;
   top: 60px;
 }
+
 /* The Close Button */
 .close-button {
   font-size: x-large;
@@ -232,13 +244,13 @@ body {
 }
 
 .add-button::before {
-  content: '';
+  content: "";
   width: 420px;
-  border: 1px solid #B3B3B3;  
+  border: 1px solid #b3b3b3;
   position: absolute;
   left: -40%;
   bottom: 80px;
-  color: #B3B3B3;
+  color: #b3b3b3;
   margin: 0;
   padding: 0;
 }

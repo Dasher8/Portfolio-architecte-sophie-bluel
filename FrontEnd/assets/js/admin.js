@@ -19,18 +19,24 @@ function closeModal() {
   modalContainer.remove();
 }
 
+// Function to open the add modal
+function openAddModal() {
+  const addModalContainer = document.querySelector(".add-modal-container");
+  addModalContainer.style.display = "block"; // Show the add modal
+
+   // Close the initial modal
+   closeModal();
+}
+
 // Create the edit button
 const editButton = document.createElement("button");
 editButton.classList.add("edit-button");
 editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>modifier';
 
-//editContainer.appendChild(editButton);
-
 // Find the <h2> element
 const h2Element = editContainer.querySelector("h2");
 
 // Insert the edit button just after the <h2> element
-// beforeend insert the button in the h2, need to fix the position later
 h2Element.insertAdjacentElement("beforeend", editButton);
 
 // Add event listener to the edit button
@@ -74,9 +80,12 @@ function openModal() {
         worksContainer.appendChild(image);
       });
 
-       // Add the ::after pseudo-element to the works images
-    worksContainer.querySelectorAll('.works-img').forEach(image => {
-        image.insertAdjacentHTML('afterend', '<button class="delete-btn"><i class="fa-solid fa-trash-can"></i></button>');
+      // Add delete button to the works images
+      worksContainer.querySelectorAll(".works-img").forEach((image) => {
+        image.insertAdjacentHTML(
+          "afterend",
+          '<button class="delete-btn"><i class="fa-solid fa-trash-can"></i></button>'
+        );
       });
 
       // Select the modal content element
@@ -92,6 +101,7 @@ function openModal() {
   addButton.classList.add("add-button");
   addButton.innerHTML = "<p>Ajouter une photo</p>";
   modalContent.appendChild(addButton);
+  addButton.addEventListener("click", openAddModal); // Open the add modal when the add button is clicked
 
   // Add close button
   const closeButton = document.createElement("button");
@@ -117,3 +127,25 @@ function openModal() {
     }
   });
 }
+
+// Function to create the add modal
+function createAddModal() {
+  // Create add modal container
+  const addModalContainer = document.createElement("div");
+  addModalContainer.classList.add("add-modal-container");
+  addModalContainer.style.display = "none"; // Initially hide the add modal
+
+  // Create add modal content
+  const addModalContent = document.createElement("div");
+  addModalContent.classList.add("add-modal-content");
+  addModalContent.innerHTML = '<p class="add-modal-title">Ajout photo</p>';
+
+  // Append add modal content to add modal container
+  addModalContainer.appendChild(addModalContent);
+
+  // Append add modal container to body
+  document.body.appendChild(addModalContainer);
+}
+
+// Create the add modal when the page loads
+createAddModal();
