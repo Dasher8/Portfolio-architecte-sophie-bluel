@@ -68,9 +68,15 @@ function openModal() {
         const image = document.createElement("img");
         image.src = work.imageUrl;
         image.alt = work.title;
+        image.classList.add("works-img");
 
         // Append image to the works container
         worksContainer.appendChild(image);
+      });
+
+       // Add the ::after pseudo-element to the works images
+    worksContainer.querySelectorAll('.works-img').forEach(image => {
+        image.insertAdjacentHTML('afterend', '<button class="delete-btn"><i class="fa-solid fa-trash-can"></i></button>');
       });
 
       // Select the modal content element
