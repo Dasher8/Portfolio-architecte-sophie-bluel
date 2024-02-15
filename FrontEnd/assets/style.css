@@ -205,6 +205,21 @@ body {
   cursor: pointer;
 }
 
+.validate-button {
+  width: 237px;
+  height: 36px;
+  color: #ffffff;
+  background: #A7A7A7;
+  border: none;
+  border-radius: 60px;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 45px;
+  cursor: pointer;
+}
+
 .works-container img {
   width: 76.86px;
   height: 102.57px;

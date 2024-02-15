@@ -156,6 +156,11 @@ function createAddModal() {
    const returnButton = document.createElement("button");
    returnButton.classList.add("return-button");
    returnButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+
+   const validateButton = document.createElement("button");
+  validateButton.classList.add("validate-button");
+  validateButton.innerHTML = "<p>Valider</p>";
+  addModalContent.appendChild(validateButton);
    
    addModalContent.appendChild(returnButton);
 
