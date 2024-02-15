@@ -20,17 +20,17 @@ function closeModal() {
 }
 
 function closeAddModal() {
-    const addModalContainer = document.querySelector(".add-modal-container");
-    addModalContainer.remove();
-  }
+  const addModalContainer = document.querySelector(".add-modal-container");
+  addModalContainer.remove();
+}
 
 // Function to open the add modal
 function openAddModal() {
   const addModalContainer = document.querySelector(".add-modal-container");
   addModalContainer.style.display = "block"; // Show the add modal
 
-   // Close the initial modal
-   closeModal();
+  // Close the initial modal
+  closeModal();
 }
 
 // Create the edit button
@@ -133,7 +133,9 @@ function openModal() {
   });
 }
 
-// Function to create the add modal
+/**
+ * Function to create the add modal
+ */
 function createAddModal() {
   // Create add modal container
   const addModalContainer = document.createElement("div");
@@ -145,26 +147,41 @@ function createAddModal() {
   addModalContent.classList.add("add-modal-content");
   addModalContent.innerHTML = '<p class="add-modal-title">Ajout photo</p>';
 
-   // Add close button
-   const closeButton = document.createElement("button");
-   closeButton.classList.add("close-button");
-   closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-   closeButton.addEventListener("click", closeAddModal);
- 
-   addModalContent.appendChild(closeButton);
+  //create Picture Container
+  const addPictureContainer = document.createElement("div");
+  addPictureContainer.classList.add("add-picture-container");
+  addPictureContainer.innerHTML = '<i class="fa-regular fa-image"></i> <p>jpg, png : 4mo max</p>';
+    
+//create add Picture Button
+  const addPictureButton = document.createElement("button");
+  addPictureButton.classList.add("add-picture-btn");
+  addPictureButton.setAttribute('type', 'submit');
+  addPictureButton.innerHTML = '+ Ajouter photo';
 
-   const returnButton = document.createElement("button");
-   returnButton.classList.add("return-button");
-   returnButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+  addPictureContainer.appendChild(addPictureButton);
 
-   const validateButton = document.createElement("button");
+  addModalContent.appendChild(addPictureContainer);
+
+  // Add close button
+  const closeButton = document.createElement("button");
+  closeButton.classList.add("close-button");
+  closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  closeButton.addEventListener("click", closeAddModal);
+
+  addModalContent.appendChild(closeButton);
+
+  const returnButton = document.createElement("button");
+  returnButton.classList.add("return-button");
+  returnButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+
+  const validateButton = document.createElement("button");
   validateButton.classList.add("validate-button");
   validateButton.innerHTML = "<p>Valider</p>";
   addModalContent.appendChild(validateButton);
-   
-   addModalContent.appendChild(returnButton);
 
-   addModalContent.appendChild(closeButton);
+  addModalContent.appendChild(returnButton);
+
+  addModalContent.appendChild(closeButton);
 
   // Append add modal content to add modal container
   addModalContainer.appendChild(addModalContent);
@@ -172,8 +189,8 @@ function createAddModal() {
   // Append add modal container to body
   document.body.appendChild(addModalContainer);
 
-   // Close the modal when clicking outside of its content
-   addModalContainer.addEventListener("click", (event) => {
+  // Close the modal when clicking outside of its content
+  addModalContainer.addEventListener("click", (event) => {
     if (event.target === addModalContainer) {
       closeAddModal();
     }
