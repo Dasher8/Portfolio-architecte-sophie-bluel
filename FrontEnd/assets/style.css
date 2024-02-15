@@ -182,7 +182,7 @@ body {
 
 /* The Close Button */
 .close-button {
-  font-size: x-large;
+  font-size: large;
   color: #000000;
   float: right;
   background: none;
@@ -190,6 +190,18 @@ body {
   position: absolute;
   top: 20px;
   right: 25px;
+  cursor: pointer;
+}
+
+.return-button {
+  font-size: large;
+  color: #000000;
+  float: right;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 25px;
   cursor: pointer;
 }
 

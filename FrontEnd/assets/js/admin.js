@@ -111,7 +111,7 @@ function openModal() {
   // Add close button
   const closeButton = document.createElement("button");
   closeButton.classList.add("close-button");
-  closeButton.innerHTML = "&times;";
+  closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
   closeButton.addEventListener("click", closeModal);
 
   modalContent.appendChild(closeButton);
@@ -148,9 +148,17 @@ function createAddModal() {
    // Add close button
    const closeButton = document.createElement("button");
    closeButton.classList.add("close-button");
-   closeButton.innerHTML = "&times;";
+   closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
    closeButton.addEventListener("click", closeAddModal);
  
+   addModalContent.appendChild(closeButton);
+
+   const returnButton = document.createElement("button");
+   returnButton.classList.add("return-button");
+   returnButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+   
+   addModalContent.appendChild(returnButton);
+
    addModalContent.appendChild(closeButton);
 
   // Append add modal content to add modal container
