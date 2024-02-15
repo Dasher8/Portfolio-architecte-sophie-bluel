@@ -11,12 +11,21 @@
 const token = localStorage.getItem('authToken');
 const editContainer = document.querySelector(".portfolio");
 
+
+/**
+ * Function to close modal
+ */
+function closeModal() {
+    const modalContainer = document.querySelector(".modal-container");
+    modalContainer.remove();
+}
+
 // Create the edit button
 const editButton = document.createElement("button");
 editButton.classList.add("edit-button");
 editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>modifier';
 
-editContainer.appendChild(editButton);
+//editContainer.appendChild(editButton);
 
 // Find the <h2> element
 const h2Element = editContainer.querySelector("h2");
@@ -28,7 +37,10 @@ h2Element.insertAdjacentElement("beforeend", editButton);
 // Add event listener to the edit button
 editButton.addEventListener("click", openModal);
 
-// Function to fetch works from the API and display them in the modal content
+/**
+ * Function to fetch works from the API and display them in the modal content
+ */
+
 async function displayWorksInModal() {
     try {
         // Fetch works from the API
@@ -59,7 +71,9 @@ async function displayWorksInModal() {
     }
 }
 
-// Function to create a modal with the ability to close it
+/**
+ * Function to create a modal with the ability to close it
+ */
 function openModal() {
     // Create modal container
     const modalContainer = document.createElement("div");
@@ -81,6 +95,7 @@ function openModal() {
     closeButton.classList.add("close-button");
     closeButton.innerHTML = "&times;";
     closeButton.addEventListener("click", closeModal);
+
     modalContent.appendChild(closeButton);
 
     // Append modal content to modal container
@@ -91,10 +106,12 @@ function openModal() {
 
     // Display works in modal content
     displayWorksInModal();
-}
 
-// Function to close modal
-function closeModal() {
-    const modalContainer = document.querySelector(".modal-container");
-    modalContainer.remove();
+
+    // Close the modal when clicking outside of its content
+    modalContainer.addEventListener("click", (event) => {
+        if (event.target === modalContainer) {
+            closeModal();
+        }
+    });
 }

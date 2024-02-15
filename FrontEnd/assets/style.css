@@ -181,6 +181,7 @@ body {
   position: absolute;
   top: 20px;
   right: 25px;
+  cursor: pointer;
 }
 
 .works-container img {
@@ -208,6 +209,7 @@ body {
   font-weight: bold;
   position: absolute;
   bottom: 45px;
+  cursor: pointer;
 }
 
 .add-button::before {
