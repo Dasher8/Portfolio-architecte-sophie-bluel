@@ -52,7 +52,6 @@ function openModal() {
   /**
    * Function to fetch works from the API and display them in the modal content
    */
-
   async function displayWorksInModal() {
     try {
       // Fetch works from the API
