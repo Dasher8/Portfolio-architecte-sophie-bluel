@@ -274,7 +274,29 @@ function createAddModal() {
   const validateButton = document.createElement("button");
   validateButton.classList.add("validate-button");
   validateButton.innerHTML = "<p>Valider</p>";
+  validateButton.disabled = true; // Initially disable the button
   addModalContent.appendChild(validateButton);
+
+  // Event listener for input fields and file input
+[inputTitle, inputCategory, addPictureButton].forEach((input) => {
+    input.addEventListener("input", validateFields);
+  });
+  
+  // Function to validate fields
+  function validateFields() {
+    const title = inputTitle.value.trim(); // Trim whitespace from title
+    const category = inputCategory.value.trim(); // Trim whitespace from category
+    const fileSelected = !!addPictureButton.files[0]; // Check if a file is selected
+  
+    // Check if all required fields are filled
+    if (title && category && fileSelected) {
+      validateButton.disabled = false; // Enable the validate button
+      validateButton.classList.add("validate-button-active");
+    } else {
+      validateButton.disabled = true; // Disable the validate button
+      validateButton.classList.remove("validate-button-active");
+    }
+  }
 
   addModalContent.appendChild(returnButton);
 

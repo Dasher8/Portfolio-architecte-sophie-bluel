@@ -336,6 +336,10 @@ body {
   cursor: pointer;
 }
 
+.validate-button-active {
+  background: #1D6154;
+}
+
 .validate-button::before {
   content: "";
   width: 420px;
