@@ -336,7 +336,7 @@ body {
   border: 1px solid #b3b3b3;
   position: absolute;
   left: -40%;
-  bottom: 80px;
+  bottom: 70px;
   color: #b3b3b3;
   margin: 0;
   padding: 0;
@@ -346,6 +346,7 @@ body {
 .modal-form{
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   margin: 30px;
 }
 .modal-form input {
@@ -353,7 +354,7 @@ body {
   height: 51px;
   border: none;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
-  margin: 20px;
+  margin: 20px 0;
 }
 
 /*SECOND MODAL*/
