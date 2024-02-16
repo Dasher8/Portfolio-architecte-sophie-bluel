@@ -182,18 +182,32 @@ function createAddModal() {
 //FORM
 //Create form
 const form = document.createElement('form');
+form.classList.add("modal-form");
 
 //Create form inputs 
 const inputTitle = document.createElement('input');
+inputTitle.id = 'input-title';
 inputTitle.type = 'text';
 inputTitle.name = 'Titre';
 
 const inputCategory = document.createElement('input');
+inputCategory.id = 'input-category';
 inputCategory.type = 'text';
 inputCategory.name = 'Category';
 
+// Create labels for the inputs
+const labelTitle = document.createElement('label');
+labelTitle.textContent = 'Titre'; // Label text for the title input
+labelTitle.setAttribute('for', 'input-title'); // Set the 'for' attribute to match the input's 'id'
+
+const labelCategory = document.createElement('label');
+labelCategory.textContent = 'Category'; // Label text for the category input
+labelCategory.setAttribute('for', 'input-category'); // Set the 'for' attribute to match the input's 'id'
+
 //Add elemetst to the form
+form.appendChild(labelTitle);
 form.appendChild(inputTitle);
+form.appendChild(labelCategory);
 form.appendChild(inputCategory);
 
 //Append form to the DOM
