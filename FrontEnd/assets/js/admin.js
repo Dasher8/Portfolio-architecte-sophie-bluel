@@ -186,13 +186,37 @@ function createAddModal() {
   addPictureContainer.appendChild(photoSizeText);
 
   //create add Picture Button
-  const addPictureButton = document.createElement("button");
+  const addPictureButton = document.createElement("input");
   addPictureButton.classList.add("add-picture-btn");
-  addPictureButton.setAttribute("type", "submit");
+  addPictureButton.setAttribute("type", "file");
   addPictureButton.innerHTML = "+ Ajouter photo";
+  addPictureButton.setAttribute("accept", "image/*"); // Accept only image files
+  // Add event listener to handle file selection
+  addPictureButton.addEventListener("change", handleFileSelect);
 
   addPictureContainer.appendChild(addPictureButton);
 
+  // Function to handle file selection
+  function handleFileSelect(event) {
+    const file = event.target.files[0]; // Get the selected file
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        // Create an image element to display the selected image
+        const imageElement = document.createElement("img");
+        imageElement.src = e.target.result; // Set the image source to the file contents
+        imageElement.classList.add("uploaded-image");
+
+        // Append the image element to the "Add Picture" container
+        addPictureContainer.appendChild(imageElement);
+        photoSizeText.remove();
+        addPictureButton.remove();
+        const pictureIcon = addPictureContainer.querySelector(".fa-image");
+        pictureIcon.remove();
+      };
+      reader.readAsDataURL(file); // Read the file contents as a data URL
+    }
+  }
   addModalContent.appendChild(addPictureContainer);
 
   // Add close button

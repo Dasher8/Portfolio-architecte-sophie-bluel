@@ -250,6 +250,12 @@ body {
 
 /*SECOND MODAL*/
 
+.uploaded-image {
+  max-width: 30%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .add-modal-container {
   position: fixed;
   z-index: 2;
