@@ -80,18 +80,42 @@ function openModal() {
         image.src = work.imageUrl;
         image.alt = work.title;
         image.classList.add("works-img");
-
+        image.setAttribute("id", `${work.categoryId}`);
+    
         // Append image to the works container
         worksContainer.appendChild(image);
-      });
-
-      // Add delete button to the works images
-      worksContainer.querySelectorAll(".works-img").forEach((image) => {
-        image.insertAdjacentHTML(
-          "afterend",
-          '<button class="delete-btn"><i class="fa-solid fa-trash-can"></i></button>'
-        );
-      });
+    
+        // Create delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-btn");
+        deleteButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+    
+        // Add click event listener to delete button
+        deleteButton.addEventListener("click", async () => {
+            try {
+                const deleteResponse = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+    
+                if (deleteResponse.ok) {
+                    // Remove both image and delete button from the DOM
+                    worksContainer.removeChild(image);
+                    worksContainer.removeChild(deleteButton);
+                } else {
+                    console.error("Failed to delete work");
+                }
+            } catch (error) {
+                console.error("Error deleting work:", error);
+            }
+        });
+    
+        // Append delete button to works container
+        worksContainer.appendChild(deleteButton);
+    });
 
       // Select the modal content element
       const modalContent = document.querySelector(".modal-content");
