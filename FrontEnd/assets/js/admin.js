@@ -81,41 +81,44 @@ function openModal() {
         image.alt = work.title;
         image.classList.add("works-img");
         image.setAttribute("id", `${work.categoryId}`);
-    
+
         // Append image to the works container
         worksContainer.appendChild(image);
-    
+
         // Create delete button
         const deleteButton = document.createElement("button");
         deleteButton.classList.add("delete-btn");
         deleteButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-    
+
         // Add click event listener to delete button
         deleteButton.addEventListener("click", async () => {
-            try {
-                const deleteResponse = await fetch(`http://localhost:5678/api/works/${work.id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-    
-                if (deleteResponse.ok) {
-                    // Remove both image and delete button from the DOM
-                    worksContainer.removeChild(image);
-                    worksContainer.removeChild(deleteButton);
-                } else {
-                    console.error("Failed to delete work");
-                }
-            } catch (error) {
-                console.error("Error deleting work:", error);
+          try {
+            const deleteResponse = await fetch(
+              `http://localhost:5678/api/works/${work.id}`,
+              {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+
+            if (deleteResponse.ok) {
+              // Remove both image and delete button from the DOM
+              worksContainer.removeChild(image);
+              worksContainer.removeChild(deleteButton);
+            } else {
+              console.error("Failed to delete work");
             }
+          } catch (error) {
+            console.error("Error deleting work:", error);
+          }
         });
-    
+
         // Append delete button to works container
         worksContainer.appendChild(deleteButton);
-    });
+      });
 
       // Select the modal content element
       const modalContent = document.querySelector(".modal-content");
@@ -126,6 +129,7 @@ function openModal() {
     }
   }
 
+  //Add add button
   const addButton = document.createElement("button");
   addButton.classList.add("add-button");
   addButton.innerHTML = "<p>Ajouter une photo</p>";
@@ -178,14 +182,14 @@ function createAddModal() {
 
   const photoSizeText = document.createElement("p");
   photoSizeText.classList.add("picture-size-txt");
-  photoSizeText.innerHTML = 'jpg, png : 4mo max';
+  photoSizeText.innerHTML = "jpg, png : 4mo max";
   addPictureContainer.appendChild(photoSizeText);
-    
-//create add Picture Button
+
+  //create add Picture Button
   const addPictureButton = document.createElement("button");
   addPictureButton.classList.add("add-picture-btn");
-  addPictureButton.setAttribute('type', 'submit');
-  addPictureButton.innerHTML = '+ Ajouter photo';
+  addPictureButton.setAttribute("type", "submit");
+  addPictureButton.innerHTML = "+ Ajouter photo";
 
   addPictureContainer.appendChild(addPictureButton);
 
@@ -202,46 +206,46 @@ function createAddModal() {
   const returnButton = document.createElement("button");
   returnButton.classList.add("return-button");
   returnButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+  returnButton.addEventListener("click", () => {
+    // Close the add modal
+    closeAddModal();
+    // Display the main modal
+    openModal(); // If main modal not found, open it
+  });
 
-//FORM
-//Create form
-const form = document.createElement('form');
-form.classList.add("modal-form");
+  //FORM
+  //Create form
+  const form = document.createElement("form");
+  form.classList.add("modal-form");
 
-//Create form inputs 
-const inputTitle = document.createElement('input');
-inputTitle.id = 'input-title';
-inputTitle.type = 'text';
-inputTitle.name = 'Titre';
+  //Create form inputs
+  const inputTitle = document.createElement("input");
+  inputTitle.id = "input-title";
+  inputTitle.type = "text";
+  inputTitle.name = "Titre";
 
-const inputCategory = document.createElement('input');
-inputCategory.id = 'input-category';
-inputCategory.type = 'text';
-inputCategory.name = 'Catégory';
+  const inputCategory = document.createElement("input");
+  inputCategory.id = "input-category";
+  inputCategory.type = "text";
+  inputCategory.name = "Catégory";
 
-// Create labels for the inputs
-const labelTitle = document.createElement('label');
-labelTitle.textContent = 'Titre'; // Label text for the title input
-labelTitle.setAttribute('for', 'input-title'); // Set the 'for' attribute to match the input's 'id'
+  // Create labels for the inputs
+  const labelTitle = document.createElement("label");
+  labelTitle.textContent = "Titre"; // Label text for the title input
+  labelTitle.setAttribute("for", "input-title"); // Set the 'for' attribute to match the input's 'id'
 
-const labelCategory = document.createElement('label');
-labelCategory.textContent = 'Catégory'; // Label text for the category input
-labelCategory.setAttribute('for', 'input-category'); // Set the 'for' attribute to match the input's 'id'
+  const labelCategory = document.createElement("label");
+  labelCategory.textContent = "Catégory"; // Label text for the category input
+  labelCategory.setAttribute("for", "input-category"); // Set the 'for' attribute to match the input's 'id'
 
-//Add elemetst to the form
-form.appendChild(labelTitle);
-form.appendChild(inputTitle);
-form.appendChild(labelCategory);
-form.appendChild(inputCategory);
+  //Add elemetst to the form
+  form.appendChild(labelTitle);
+  form.appendChild(inputTitle);
+  form.appendChild(labelCategory);
+  form.appendChild(inputCategory);
 
-//Append form to the DOM
-addModalContent.appendChild(form);
-
-
-
-
-
-
+  //Append form to the DOM
+  addModalContent.appendChild(form);
 
   const validateButton = document.createElement("button");
   validateButton.classList.add("validate-button");
