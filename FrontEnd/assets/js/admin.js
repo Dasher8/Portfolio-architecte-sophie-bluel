@@ -179,6 +179,32 @@ function createAddModal() {
   returnButton.classList.add("return-button");
   returnButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
 
+//FORM
+//Create form
+const form = document.createElement('form');
+
+//Create form inputs 
+const inputTitle = document.createElement('input');
+inputTitle.type = 'text';
+inputTitle.name = 'Titre';
+
+const inputCategory = document.createElement('input');
+inputCategory.type = 'text';
+inputCategory.name = 'Category';
+
+//Add elemetst to the form
+form.appendChild(inputTitle);
+form.appendChild(inputCategory);
+
+//Append form to the DOM
+addModalContent.appendChild(form);
+
+
+
+
+
+
+
   const validateButton = document.createElement("button");
   validateButton.classList.add("validate-button");
   validateButton.innerHTML = "<p>Valider</p>";
