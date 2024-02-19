@@ -19,6 +19,9 @@ function closeModal() {
   modalContainer.remove();
 }
 
+/**
+ * 
+ */
 function closeAddModal() {
   const addModalContainer = document.querySelector(".add-modal-container");
   addModalContainer.remove();
@@ -248,25 +251,49 @@ function createAddModal() {
   inputTitle.type = "text";
   inputTitle.name = "Titre";
 
-  const inputCategory = document.createElement("input");
-  inputCategory.id = "input-category";
-  inputCategory.type = "text";
-  inputCategory.name = "Catégory";
-
   // Create labels for the inputs
   const labelTitle = document.createElement("label");
   labelTitle.textContent = "Titre"; // Label text for the title input
   labelTitle.setAttribute("for", "input-title"); // Set the 'for' attribute to match the input's 'id'
 
-  const labelCategory = document.createElement("label");
-  labelCategory.textContent = "Catégory"; // Label text for the category input
-  labelCategory.setAttribute("for", "input-category"); // Set the 'for' attribute to match the input's 'id'
+  //Create form inputs
+const selectCategory = document.createElement("select");
+selectCategory.id = "select-category";
+selectCategory.name = "Category";
+
+// Create label for the select
+const labelCategory = document.createElement("label");
+labelCategory.textContent = "Catégory"; // Label text for the category select
+labelCategory.setAttribute("for", "select-category"); // Set the 'for' attribute to match the select's 'id'
+
+// Fetch categories from the API and populate the select options
+async function fetchCategories() {
+  try {
+    const response = await fetch("http://localhost:5678/api/categories");
+    const categories = await response.json();
+
+    // Create an option for each category
+    categories.forEach((category) => {
+      const option = document.createElement("option");
+      option.value = category.id; // Set the option value to the category id
+      option.textContent = category.name; // Set the option text to the category name
+      selectCategory.appendChild(option); // Append the option to the select
+    });
+
+    selectCategory.value = "";
+    
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+  }
+}
+
+fetchCategories(); // Fetch categories and populate the select options
 
   //Add elemetst to the form
   form.appendChild(labelTitle);
   form.appendChild(inputTitle);
   form.appendChild(labelCategory);
-  form.appendChild(inputCategory);
+  form.appendChild(selectCategory);
 
   //Append form to the DOM
   addModalContent.appendChild(form);
@@ -278,16 +305,16 @@ function createAddModal() {
   addModalContent.appendChild(validateButton);
 
   // Event listener for input fields and file input
-[inputTitle, inputCategory, addPictureButton].forEach((input) => {
+  [inputTitle, addPictureButton].forEach((input) => {
     input.addEventListener("input", validateFields);
   });
-  
+
   // Function to validate fields
   function validateFields() {
     const title = inputTitle.value.trim(); // Trim whitespace from title
-    const category = inputCategory.value.trim(); // Trim whitespace from category
+    const category = selectCategory.value; // Get the selected category value from the dropdown
     const fileSelected = !!addPictureButton.files[0]; // Check if a file is selected
-  
+
     // Check if all required fields are filled
     if (title && category && fileSelected) {
       validateButton.disabled = false; // Enable the validate button
@@ -297,6 +324,8 @@ function createAddModal() {
       validateButton.classList.remove("validate-button-active");
     }
   }
+
+  
 
   addModalContent.appendChild(returnButton);
 
