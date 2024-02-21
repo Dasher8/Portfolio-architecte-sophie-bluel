@@ -5,6 +5,7 @@ let addPictureButton;
 const token = localStorage.getItem("authToken");
 const editContainer = document.querySelector(".portfolio");
 
+
 /**
  * Function to close modal
  */
@@ -190,7 +191,7 @@ function createAddModal() {
   addPictureContainer.appendChild(photoSizeText);
 
   //create add Picture Button
-  const addPictureButton = document.createElement("input");
+  addPictureButton = document.createElement("input");
   addPictureButton.classList.add("add-picture-btn");
   addPictureButton.setAttribute("type", "file");
   addPictureButton.innerHTML = "+ Ajouter photo";
@@ -320,6 +321,9 @@ function createAddModal() {
     input.addEventListener("input", validateFields);
   });
 
+  // Add event listener to the validate button
+validateButton.addEventListener("click", handleSubmit);
+
   /**
    * Function to validate fields
    */
@@ -328,21 +332,17 @@ function createAddModal() {
     const title = inputTitle.value.trim(); // Trim whitespace from title
     const category = selectCategory.value; // Get the selected category value from the dropdown
     const fileSelected = !!addPictureButton.files[0]; // Check if a file is selected
-    console.log("Title:", title);
-    console.log("Category:", category);
-    console.log("File selected:", fileSelected);
+    ;
     // Check if all required fields are filled
     if (title && category && fileSelected) {
       console.log("All fields filled.");
       validateButton.disabled = false; // Enable the validate button
       validateButton.classList.add("validate-button-active");
-      // Add event listener to the validate button
-      validateButton.addEventListener("click", handleSubmit);
+   
     } else {
       console.log("Some fields are empty.");
       validateButton.disabled = true; // Disable the validate button
-      validateButton.classList.remove("validate-button-active"); // Add event listener to the validate button
-      validateButton.removeEventListener("click", handleSubmit);
+      validateButton.classList.remove("validate-button-active"); 
     }
   }
 
@@ -383,16 +383,11 @@ function createAddModal() {
     formData.append("category", category);
     formData.append("file", file);
 
-    const jsonData = {
-      title: title,
-      category: category,
-    };
-
     try {
       // Send data to API
       const response = await fetch("http://localhost:5678/api/works", {
         method: "POST",
-        body: JSON.stringify(jsonData), // Convert data to JSON string
+        body: formData,
         headers: {
           Authorization: `Bearer ${token}`,
         },
