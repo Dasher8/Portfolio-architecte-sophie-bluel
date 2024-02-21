@@ -5,7 +5,6 @@ let addPictureButton;
 const token = localStorage.getItem("authToken");
 const editContainer = document.querySelector(".portfolio");
 
-
 /**
  * Function to close modal
  */
@@ -191,14 +190,25 @@ function createAddModal() {
   addPictureContainer.appendChild(photoSizeText);
 
   //create add Picture Button
+  // Create the custom file input button
   addPictureButton = document.createElement("input");
-  addPictureButton.classList.add("add-picture-btn");
-  addPictureButton.setAttribute("type", "file");
-  addPictureButton.innerHTML = "+ Ajouter photo";
-  addPictureButton.setAttribute("accept", "image/*"); // Accept only image files
+  addPictureButton.type = "file";
+  addPictureButton.accept = "image/*";
+  addPictureButton.style.display = "none"; // Hide the default file input button
+
+  // Create the custom-styled button
+  const customButton = document.createElement("button");
+  customButton.classList.add("add-picture-btn");
+  customButton.textContent = "+ Ajouter photo";
+
+  // Add event listener to trigger file input click when custom button is clicked
+  customButton.addEventListener("click", function () {
+    addPictureButton.click(); // Trigger the click event of the file input
+  });
   // Add event listener to handle file selection
   addPictureButton.addEventListener("change", handleFileSelect);
 
+  addPictureContainer.appendChild(customButton);
   addPictureContainer.appendChild(addPictureButton);
 
   /**
@@ -219,6 +229,7 @@ function createAddModal() {
         addPictureContainer.appendChild(imageElement);
         photoSizeText.remove();
         addPictureButton.remove();
+        customButton.remove();
         const pictureIcon = addPictureContainer.querySelector(".fa-image");
         pictureIcon.remove();
       };
@@ -322,7 +333,7 @@ function createAddModal() {
   });
 
   // Add event listener to the validate button
-validateButton.addEventListener("click", handleSubmit);
+  validateButton.addEventListener("click", handleSubmit);
 
   /**
    * Function to validate fields
@@ -332,17 +343,15 @@ validateButton.addEventListener("click", handleSubmit);
     const title = inputTitle.value.trim(); // Trim whitespace from title
     const category = selectCategory.value; // Get the selected category value from the dropdown
     const fileSelected = !!addPictureButton.files[0]; // Check if a file is selected
-    ;
     // Check if all required fields are filled
     if (title && category && fileSelected) {
       console.log("All fields filled.");
       validateButton.disabled = false; // Enable the validate button
       validateButton.classList.add("validate-button-active");
-   
     } else {
       console.log("Some fields are empty.");
       validateButton.disabled = true; // Disable the validate button
-      validateButton.classList.remove("validate-button-active"); 
+      validateButton.classList.remove("validate-button-active");
     }
   }
 
