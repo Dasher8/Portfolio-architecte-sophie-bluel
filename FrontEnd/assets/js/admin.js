@@ -1,12 +1,6 @@
-/**
- * 1) Depuis javascript, création d'un bouton "Modifier" et insertion dans le DOM
- * 2) Au clic, sur le bouton, création + insertion d'une modale
- * 3) Dans cette modale, insertion de tous les projets
- *
- * 4) Création d'un autre bouton n°2
- * 5) Au clic sur bouton n°3 création de la seconde modale
- * 6) Dans la seconde modale, ajout d'un formulaire
- */
+let inputTitle;
+let selectCategory;
+let addPictureButton;
 
 const token = localStorage.getItem("authToken");
 const editContainer = document.querySelector(".portfolio");
@@ -20,14 +14,16 @@ function closeModal() {
 }
 
 /**
- * 
+ * Function to close the add modal
  */
 function closeAddModal() {
   const addModalContainer = document.querySelector(".add-modal-container");
   addModalContainer.remove();
 }
 
-// Function to open the add modal
+/**
+ * Function to open the add modal
+ */
 function openAddModal() {
   const addModalContainer = document.querySelector(".add-modal-container");
   addModalContainer.style.display = "block"; // Show the add modal
@@ -70,6 +66,11 @@ function openModal() {
     try {
       // Fetch works from the API
       const response = await fetch("http://localhost:5678/api/works");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch works");
+      }
+
       const works = await response.json();
 
       // Create a new div to hold the works images
@@ -199,7 +200,10 @@ function createAddModal() {
 
   addPictureContainer.appendChild(addPictureButton);
 
-  // Function to handle file selection
+  /**
+   * Handles file selection, displaying the selected image,
+   * and updating the interface accordingly.
+   */
   function handleFileSelect(event) {
     const file = event.target.files[0]; // Get the selected file
     if (file) {
@@ -240,8 +244,9 @@ function createAddModal() {
     openModal(); // If main modal not found, open it
   });
 
-  //FORM
-  //Create form
+  /**
+   * Create form
+   */
   const form = document.createElement("form");
   form.classList.add("modal-form");
 
@@ -257,37 +262,43 @@ function createAddModal() {
   labelTitle.setAttribute("for", "input-title"); // Set the 'for' attribute to match the input's 'id'
 
   //Create form inputs
-const selectCategory = document.createElement("select");
-selectCategory.id = "select-category";
-selectCategory.name = "Category";
+  const selectCategory = document.createElement("select");
+  selectCategory.id = "select-category";
+  selectCategory.name = "Category";
 
-// Create label for the select
-const labelCategory = document.createElement("label");
-labelCategory.textContent = "Catégory"; // Label text for the category select
-labelCategory.setAttribute("for", "select-category"); // Set the 'for' attribute to match the select's 'id'
+  // Create label for the select
+  const labelCategory = document.createElement("label");
+  labelCategory.textContent = "Catégory"; // Label text for the category select
+  labelCategory.setAttribute("for", "select-category"); // Set the 'for' attribute to match the select's 'id'
 
-// Fetch categories from the API and populate the select options
-async function fetchCategories() {
-  try {
-    const response = await fetch("http://localhost:5678/api/categories");
-    const categories = await response.json();
+  /**
+   * Fetch categories from the API and populate the select options
+   */
+  async function fetchCategories() {
+    try {
+      const response = await fetch("http://localhost:5678/api/categories");
 
-    // Create an option for each category
-    categories.forEach((category) => {
-      const option = document.createElement("option");
-      option.value = category.id; // Set the option value to the category id
-      option.textContent = category.name; // Set the option text to the category name
-      selectCategory.appendChild(option); // Append the option to the select
-    });
+      if (!response.ok) {
+        throw new Error("Failed to fetch categories");
+      }
 
-    selectCategory.value = "";
-    
-  } catch (error) {
-    console.error("Error fetching categories:", error);
+      const categories = await response.json();
+
+      // Create an option for each category
+      categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category.id; // Set the option value to the category id
+        option.textContent = category.name; // Set the option text to the category name
+        selectCategory.appendChild(option); // Append the option to the select
+      });
+
+      selectCategory.value = "";
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
   }
-}
 
-fetchCategories(); // Fetch categories and populate the select options
+  fetchCategories(); // Fetch categories and populate the select options
 
   //Add elemetst to the form
   form.appendChild(labelTitle);
@@ -305,27 +316,35 @@ fetchCategories(); // Fetch categories and populate the select options
   addModalContent.appendChild(validateButton);
 
   // Event listener for input fields and file input
-  [inputTitle, addPictureButton].forEach((input) => {
+  [inputTitle, selectCategory, addPictureButton].forEach((input) => {
     input.addEventListener("input", validateFields);
   });
 
-  // Function to validate fields
+  /**
+   * Function to validate fields
+   */
   function validateFields() {
+    console.log("Validating fields...");
     const title = inputTitle.value.trim(); // Trim whitespace from title
     const category = selectCategory.value; // Get the selected category value from the dropdown
     const fileSelected = !!addPictureButton.files[0]; // Check if a file is selected
-
+    console.log("Title:", title);
+    console.log("Category:", category);
+    console.log("File selected:", fileSelected);
     // Check if all required fields are filled
     if (title && category && fileSelected) {
+      console.log("All fields filled.");
       validateButton.disabled = false; // Enable the validate button
       validateButton.classList.add("validate-button-active");
+      // Add event listener to the validate button
+      validateButton.addEventListener("click", handleSubmit);
     } else {
+      console.log("Some fields are empty.");
       validateButton.disabled = true; // Disable the validate button
-      validateButton.classList.remove("validate-button-active");
+      validateButton.classList.remove("validate-button-active"); // Add event listener to the validate button
+      validateButton.removeEventListener("click", handleSubmit);
     }
   }
-
-  
 
   addModalContent.appendChild(returnButton);
 
@@ -343,6 +362,72 @@ fetchCategories(); // Fetch categories and populate the select options
       closeAddModal();
     }
   });
+
+  /**
+   * Handles form submission for adding a new work to the API.
+   * Collects title, category, and file data from the form,
+   * sends it to the API endpoint, and updates the website.
+   */
+  async function handleSubmit(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+    console.log("handleSubmit function called");
+
+    const title = inputTitle.value.trim();
+    console.log("Title:", title);
+    const category = selectCategory.value;
+    const file = addPictureButton.files[0];
+
+    // Create FormData object and append form data
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("category", category);
+    formData.append("file", file);
+
+    const jsonData = {
+      title: title,
+      category: category,
+    };
+
+    try {
+      // Send data to API
+      const response = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        body: JSON.stringify(jsonData), // Convert data to JSON string
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        // Work successfully added to API, update website
+        const newWork = await response.json();
+        addWorkToWebsite(newWork);
+
+        // Close add modal
+        closeAddModal();
+      } else {
+        console.error("Failed to add work to API");
+      }
+    } catch (error) {
+      console.error("Error adding work:", error);
+    }
+  }
+
+  /**
+   * Function to add new work to the website
+   */
+  function addWorkToWebsite(work) {
+    // Create image element
+    const image = document.createElement("img");
+    image.src = work.imageUrl;
+    image.alt = work.title;
+    image.classList.add("works-img");
+    image.setAttribute("id", `${work.categoryId}`);
+
+    // Append image to the works container
+    const worksContainer = document.querySelector(".works-container");
+    worksContainer.appendChild(image);
+  }
 }
 
 // Create the add modal when the page loads
