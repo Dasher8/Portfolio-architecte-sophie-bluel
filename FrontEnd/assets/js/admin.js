@@ -227,11 +227,11 @@ function createAddModal() {
 
         // Append the image element to the "Add Picture" container
         addPictureContainer.appendChild(imageElement);
-        photoSizeText.remove();
-        addPictureButton.remove();
-        customButton.remove();
+        photoSizeText.style.display = 'none';
+        addPictureButton.style.display = 'none';
+        customButton.style.display = 'none';
         const pictureIcon = addPictureContainer.querySelector(".fa-image");
-        pictureIcon.remove();
+        pictureIcon.style.display = 'none';
       };
       reader.readAsDataURL(file); // Read the file contents as a data URL
     }
