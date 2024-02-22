@@ -288,8 +288,9 @@ body {
   border-radius: 50px;
   font-family: "Work Sans";
   font-size: 15px;
-  font-weight: medium;
-  position: relative;
+  font-weight: 600;
+  position: absolute;
+  bottom: 35px;
   cursor: pointer;
 }
 
@@ -307,18 +308,18 @@ body {
 
 .picture-size-txt {
   position: absolute;
-  bottom: 10px;
-  left: 40%;
+  bottom: 15px;
   font-size: 10px;
   font-family: "Work Sans";
-  font-weight: regular;
   color: #444444;
 }
 
 .fa-image {
-  font-size: 76px;
+  font-size: 70px;
   color: #B9C5CC;
   padding: 5px;
+  position: absolute;
+  top: 15px;
 }
 
 .validate-button {
