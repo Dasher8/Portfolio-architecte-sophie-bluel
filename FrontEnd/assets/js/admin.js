@@ -25,7 +25,15 @@ function closeAddModal() {
  * Function to open the add modal
  */
 function openAddModal() {
-  const addModalContainer = document.querySelector(".add-modal-container");
+  let addModalContainer = document.querySelector(".add-modal-container");
+
+  // Check if add modal container already exists
+  if (!addModalContainer) {
+    // If it doesn't exist, create it
+    createAddModal();
+    addModalContainer = document.querySelector(".add-modal-container");
+  }
+
   addModalContainer.style.display = "block"; // Show the add modal
 
   // Close the initial modal
@@ -38,7 +46,7 @@ const editButton = document.createElement("button");
 editButton.classList.add("edit-button");
 editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>modifier';
 
-editBtnContainer.appendChild(editButton)
+editBtnContainer.appendChild(editButton);
 
 // Add event listener to the edit button
 editButton.addEventListener("click", openModal);
@@ -224,11 +232,12 @@ function createAddModal() {
 
         // Append the image element to the "Add Picture" container
         addPictureContainer.appendChild(imageElement);
-        photoSizeText.style.display = 'none';
-        addPictureButton.style.display = 'none';
-        customButton.style.display = 'none';
+        photoSizeText.style.display = "none";
+        addPictureButton.style.display = "none";
+        customButton.style.display = "none";
+
         const pictureIcon = addPictureContainer.querySelector(".fa-image");
-        pictureIcon.style.display = 'none';
+        pictureIcon.style.display = "none";
       };
       reader.readAsDataURL(file); // Read the file contents as a data URL
     }
@@ -250,7 +259,7 @@ function createAddModal() {
     // Close the add modal
     closeAddModal();
     // Display the main modal
-    openModal(); // If main modal not found, open it
+    openModal();
   });
 
   /**
