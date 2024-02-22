@@ -33,15 +33,12 @@ function openAddModal() {
 }
 
 // Create the edit button
+const editBtnContainer = document.querySelector(".edit-btn-container");
 const editButton = document.createElement("button");
 editButton.classList.add("edit-button");
 editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>modifier';
 
-// Find the <h2> element
-const h2Element = editContainer.querySelector("h2");
-
-// Insert the edit button just after the <h2> element
-h2Element.insertAdjacentElement("beforeend", editButton);
+editBtnContainer.appendChild(editButton)
 
 // Add event listener to the edit button
 editButton.addEventListener("click", openModal);

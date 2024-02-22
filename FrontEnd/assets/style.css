@@ -403,12 +403,28 @@ body {
   color: #ffffff;
 }
 
+.edit-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 70px;
+}
+
 .edit-button {
   color: #000000;
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
+  padding-left: 30px;
+  font-family: "Work Sans";
+  font-weight: 550;
+}
+
+.fa-pen-to-square {
+  padding-right: 10px;
+  font-size: small;
 }
 
 header {
@@ -418,8 +434,9 @@ header {
 }
 
 .instagram-icon {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+  font-weight: 800;
 }
 
 .login-title {
@@ -515,7 +532,7 @@ nav ul {
   list-style-type: none;
 }
 nav li {
-  padding: 0 10px;
+  padding: 0 20px;
   font-size: 1.2em;
 }
 
@@ -553,7 +570,6 @@ li:hover {
 }
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
 }
 
 .categories {
