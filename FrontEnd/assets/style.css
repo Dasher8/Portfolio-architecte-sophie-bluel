@@ -135,248 +135,6 @@ body {
   font-size: 14px;
   background: #fffef8;
 }
-/*FIRST MODAL*/
-/* The Modal (background) */
-.modal-container {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Modal Content/Box */
-.modal-content, .add-modal-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 630px;
-  height: 688px;
-  background-color: #ffffff;
-  margin: 15% auto; /* 15% from the top and centered */
-  border-radius: 10px;
-  position: relative;
-}
-
-.modal-title, .add-modal-title {
-  font-family: "Work Sans";
-  font-size: 26px;
-  position: absolute;
-  top: 60px;
-}
-
-/* The Close Button */
-.close-button {
-  font-size: large;
-  color: #000000;
-  float: right;
-  background: none;
-  border: none;
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  cursor: pointer;
-}
-
-
-
-.works-container img {
-  width: 76.86px;
-  height: 102.57px;
-  margin: 14px 0px;
-  position: relative;
-}
-
-.delete-btn {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  background-color: #000000;
-  border-radius: 3px;
-  position: relative;
-  top: 20px;
-  right: 30px;
-  cursor: pointer;
-  border: none;
-}
-
-.fa-trash-can {
-  font-size: xx-small;
-}
-
-.works-container {
-  width: 70%;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: 67px;
-}
-
-.add-button {
-  width: 237px;
-  height: 36px;
-  color: #ffffff;
-  background: #1d6154;
-  border: none;
-  border-radius: 60px;
-  font-family: "Syne";
-  font-size: 14px;
-  font-weight: bold;
-  position: absolute;
-  bottom: 45px;
-  cursor: pointer;
-}
-
-.add-button::before {
-  content: "";
-  width: 420px;
-  border: 1px solid #b3b3b3;
-  position: absolute;
-  left: -40%;
-  bottom: 80px;
-  color: #b3b3b3;
-  margin: 0;
-  padding: 0;
-}
-
-/*FIRST MODAL*/
-
-/*SECOND MODAL*/
-
-.uploaded-image {
-  max-width: 30%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.add-modal-container {
-  position: fixed;
-  z-index: 2;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.add-picture-container {
-  width: 420px;
-  height: 169px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: #E8F1F6;
-  box-sizing: border-box;
-  position: relative;
-}
-
-.add-picture-btn {
-  width: 173px;
-  height: 36px;
-  color: #306685;
-  background: #CBD6DC;
-  border: none;
-  border-radius: 50px;
-  font-family: "Work Sans";
-  font-size: 15px;
-  font-weight: 600;
-  position: absolute;
-  bottom: 35px;
-  cursor: pointer;
-}
-
-.return-button {
-  font-size: large;
-  color: #000000;
-  float: right;
-  background: none;
-  border: none;
-  position: absolute;
-  top: 20px;
-  left: 25px;
-  cursor: pointer;
-}
-
-.picture-size-txt {
-  position: absolute;
-  bottom: 15px;
-  font-size: 10px;
-  font-family: "Work Sans";
-  color: #444444;
-}
-
-.fa-image {
-  font-size: 70px;
-  color: #B9C5CC;
-  padding: 5px;
-  position: absolute;
-  top: 15px;
-}
-
-.validate-button {
-  width: 237px;
-  height: 36px;
-  color: #ffffff;
-  background: #A7A7A7;
-  border: none;
-  border-radius: 60px;
-  font-family: "Syne";
-  font-size: 14px;
-  font-weight: bold;
-  position: absolute;
-  bottom: 45px;
-  cursor: pointer;
-}
-
-.validate-button-active {
-  background: #1D6154;
-}
-
-.validate-button::before {
-  content: "";
-  width: 420px;
-  border: 1px solid #b3b3b3;
-  position: absolute;
-  left: -40%;
-  bottom: 70px;
-  color: #b3b3b3;
-  margin: 0;
-  padding: 0;
-}
-
-
-.modal-form{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 30px;
-}
-.modal-form input {
-  width: 420px;
-  height: 51px;
-  border: none;
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
-  margin: 20px 0;
-}
-
-#select-category {
-  width: 420px;
-  height: 51px;
-  border: none;
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
-  margin: 20px 0;
-}
-
-/*SECOND MODAL*/
 
 .edit-container {
   display: flex;
@@ -659,6 +417,263 @@ input[type="submit"] {
   text-align: center;
   border-radius: 60px;
 }
+
+/*FIRST MODAL*/
+/* The Modal (background) */
+.modal-container {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Content/Box */
+.modal-content,
+.add-modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 630px;
+  height: 688px;
+  background-color: #ffffff;
+  margin: 15% auto; /* 15% from the top and centered */
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal-title,
+.add-modal-title {
+  font-family: "Work Sans";
+  font-size: 26px;
+  position: absolute;
+  top: 60px;
+}
+
+/* The Close Button */
+.close-button {
+  font-size: large;
+  color: #000000;
+  float: right;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  cursor: pointer;
+}
+
+.works-container img {
+  width: 76.86px;
+  height: 102.57px;
+  margin: 14px 0px;
+  position: relative;
+}
+
+.delete-btn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 3px;
+  position: relative;
+  top: 20px;
+  right: 30px;
+  cursor: pointer;
+  border: none;
+}
+
+.fa-trash-can {
+  font-size: xx-small;
+}
+
+.works-container {
+  width: calc(77px * 5 + 5 * 20px);
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 67px;
+}
+
+.add-button {
+  width: 237px;
+  height: 36px;
+  color: #ffffff;
+  background: #1d6154;
+  border: none;
+  border-radius: 60px;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 45px;
+  cursor: pointer;
+}
+
+.add-button::before {
+  content: "";
+  width: 420px;
+  border: 1px solid #b3b3b3;
+  position: absolute;
+  left: -40%;
+  bottom: 80px;
+  color: #b3b3b3;
+  margin: 0;
+  padding: 0;
+}
+
+/*FIRST MODAL*/
+
+/*SECOND MODAL*/
+
+.uploaded-image {
+  max-width: 30%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.add-modal-container {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.add-picture-container {
+  width: 420px;
+  height: 169px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #e8f1f6;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.add-picture-btn {
+  width: 173px;
+  height: 36px;
+  color: #306685;
+  background: #cbd6dc;
+  border: none;
+  border-radius: 50px;
+  font-family: "Work Sans";
+  font-size: 15px;
+  font-weight: 600;
+  position: absolute;
+  bottom: 35px;
+  cursor: pointer;
+}
+
+.return-button {
+  font-size: large;
+  color: #000000;
+  float: right;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  cursor: pointer;
+}
+
+.picture-size-txt {
+  position: absolute;
+  bottom: 15px;
+  font-size: 10px;
+  font-family: "Work Sans";
+  color: #444444;
+}
+
+.fa-image {
+  font-size: 70px;
+  color: #b9c5cc;
+  padding: 5px;
+  position: absolute;
+  top: 15px;
+}
+
+.validate-button {
+  width: 237px;
+  height: 36px;
+  color: #ffffff;
+  background: #a7a7a7;
+  border: none;
+  border-radius: 60px;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 45px;
+  cursor: pointer;
+}
+
+.validate-button-active {
+  background: #1d6154;
+}
+
+.validate-button::before {
+  content: "";
+  width: 420px;
+  border: 1px solid #b3b3b3;
+  position: absolute;
+  left: -40%;
+  bottom: 70px;
+  color: #b3b3b3;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 30px;
+}
+.modal-form input {
+  width: 420px;
+  height: 51px;
+  border: none;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  padding: 0;
+}
+
+#select-category {
+  -webkit-appearance: none;
+  width: 424px;
+  height: 53px;
+  border: none;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.modal-form::after {
+  content: "\f078";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: xx-small;
+  color: #000;
+  position: absolute;
+  bottom: 190px;
+  right: 130px;
+}
+
+/*SECOND MODAL*/
 
 footer nav ul {
   display: flex;
