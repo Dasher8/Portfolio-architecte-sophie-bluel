@@ -286,7 +286,7 @@ function createAddModal() {
 
   // Create label for the select
   const labelCategory = document.createElement("label");
-  labelCategory.textContent = "Catégory"; // Label text for the category select
+  labelCategory.textContent = "Catégorie"; // Label text for the category select
   labelCategory.setAttribute("for", "select-category"); // Set the 'for' attribute to match the select's 'id'
 
   /**
