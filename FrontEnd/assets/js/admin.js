@@ -223,6 +223,18 @@ function createAddModal() {
   function handleFileSelect(event) {
     const file = event.target.files[0]; // Get the selected file
     if (file) {
+        // Check file type
+        if (!file.type.startsWith('image/')) {
+            alert('Please select an image file (jpg, png).');
+            return;
+        }
+        
+        // Check file size
+        if (file.size > 4 * 1024 * 1024) { // 4 MB (4 * 1024 * 1024 bytes)
+            alert('Selected image size exceeds the limit of 4 MB.');
+            return;
+        }
+
       const reader = new FileReader();
       reader.onload = function (e) {
         // Create an image element to display the selected image
@@ -388,7 +400,6 @@ function createAddModal() {
     console.log("handleSubmit function called");
 
     const title = inputTitle.value.trim();
-    console.log("Title:", title);
     const category = selectCategory.value;
     const file = addPictureButton.files[0];
 
