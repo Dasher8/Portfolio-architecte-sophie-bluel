@@ -223,17 +223,18 @@ function createAddModal() {
   function handleFileSelect(event) {
     const file = event.target.files[0]; // Get the selected file
     if (file) {
-        // Check file type
-        if (!file.type.startsWith('image/')) {
-            alert('Please select an image file (jpg, png).');
-            return;
-        }
-        
-        // Check file size
-        if (file.size > 4 * 1024 * 1024) { // 4 MB (4 * 1024 * 1024 bytes)
-            alert('Selected image size exceeds the limit of 4 MB.');
-            return;
-        }
+      // Check file type
+      if (!file.type.startsWith("image/")) {
+        alert("Please select an image file (jpg, png).");
+        return;
+      }
+
+      // Check file size
+      if (file.size > 4 * 1024 * 1024) {
+        // 4 MB (4 * 1024 * 1024 bytes)
+        alert("Selected image size exceeds the limit of 4 MB.");
+        return;
+      }
 
       const reader = new FileReader();
       reader.onload = function (e) {
@@ -339,6 +340,7 @@ function createAddModal() {
   //Append form to the DOM
   addModalContent.appendChild(form);
 
+  //create validate button
   const validateButton = document.createElement("button");
   validateButton.classList.add("validate-button");
   validateButton.innerHTML = "<p>Valider</p>";
@@ -400,14 +402,14 @@ function createAddModal() {
     console.log("handleSubmit function called");
 
     const title = inputTitle.value.trim();
-    const category = selectCategory.value;
+    const category = parseInt(selectCategory.value);
     const file = addPictureButton.files[0];
 
     // Create FormData object and append form data
     const formData = new FormData();
     formData.append("title", title);
     formData.append("category", category);
-    formData.append("file", file);
+    formData.append("image", file);
 
     try {
       // Send data to API
@@ -443,7 +445,7 @@ function createAddModal() {
     image.src = work.imageUrl;
     image.alt = work.title;
     image.classList.add("works-img");
-    image.setAttribute("id", `${work.categoryId}`);
+    image.setAttribute("id", work.categoryId);
 
     // Append image to the works container
     const worksContainer = document.querySelector(".works-container");
