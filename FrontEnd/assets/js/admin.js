@@ -4,6 +4,7 @@ let addPictureButton;
 
 const token = localStorage.getItem("authToken");
 const editContainer = document.querySelector(".portfolio");
+const worksContainer = document.querySelector(".works-container");
 
 /**
  * Function to close modal
@@ -280,7 +281,6 @@ function createAddModal() {
    */
   const form = document.createElement("form");
   form.classList.add("modal-form");
-
   //Create form inputs
   const inputTitle = document.createElement("input");
   inputTitle.id = "input-title";
@@ -301,6 +301,21 @@ function createAddModal() {
   const labelCategory = document.createElement("label");
   labelCategory.textContent = "Catégorie"; // Label text for the category select
   labelCategory.setAttribute("for", "select-category"); // Set the 'for' attribute to match the select's 'id'
+
+  //create validate button
+  const validateButton = document.createElement("button");
+  validateButton.classList.add("validate-button");
+  validateButton.innerHTML = "<p>Valider</p>";
+  validateButton.disabled = true; // Initially disable the button
+  addModalContent.appendChild(validateButton);
+
+  // Event listener for input fields and file input
+  [inputTitle, selectCategory, addPictureButton].forEach((input) => {
+    input.addEventListener("input", validateFields);
+  });
+
+  // Add event listener to the validate button
+  validateButton.addEventListener("click", handleSubmit);
 
   /**
    * Fetch categories from the API and populate the select options
@@ -339,21 +354,6 @@ function createAddModal() {
 
   //Append form to the DOM
   addModalContent.appendChild(form);
-
-  //create validate button
-  const validateButton = document.createElement("button");
-  validateButton.classList.add("validate-button");
-  validateButton.innerHTML = "<p>Valider</p>";
-  validateButton.disabled = true; // Initially disable the button
-  addModalContent.appendChild(validateButton);
-
-  // Event listener for input fields and file input
-  [inputTitle, selectCategory, addPictureButton].forEach((input) => {
-    input.addEventListener("input", validateFields);
-  });
-
-  // Add event listener to the validate button
-  validateButton.addEventListener("click", handleSubmit);
 
   /**
    * Function to validate fields
@@ -425,9 +425,6 @@ function createAddModal() {
         // Work successfully added to API, update website
         const newWork = await response.json();
         addWorkToWebsite(newWork);
-
-        // Close add modal
-        closeAddModal();
       } else {
         console.error("Failed to add work to API");
       }
@@ -440,16 +437,23 @@ function createAddModal() {
    * Function to add new work to the website
    */
   function addWorkToWebsite(work) {
-    // Create image element
-    const image = document.createElement("img");
-    image.src = work.imageUrl;
-    image.alt = work.title;
-    image.classList.add("works-img");
-    image.setAttribute("id", work.categoryId);
-
-    // Append image to the works container
+    // Find the works container element
     const worksContainer = document.querySelector(".works-container");
-    worksContainer.appendChild(image);
+
+    // Check if the works container element exists
+    if (worksContainer) {
+      // Create image element
+      const image = document.createElement("img");
+      image.src = work.imageUrl;
+      image.alt = work.title;
+      image.classList.add("works-img");
+      image.setAttribute("id", work.categoryId);
+
+      // Append image to the works container
+      worksContainer.appendChild(image);
+    } else {
+      console.error("Works container not found. Cannot add work to website.");
+    }
   }
 }
 
