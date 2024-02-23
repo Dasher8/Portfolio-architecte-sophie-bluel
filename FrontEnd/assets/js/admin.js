@@ -225,7 +225,7 @@ function createAddModal() {
     const file = event.target.files[0]; // Get the selected file
     if (file) {
       // Check file type
-      if (!file.type.startsWith("image/")) {
+      if (!(file.type === "image/jpeg" || file.type === "image/png")) {
         alert("Please select an image file (jpg, png).");
         return;
       }
