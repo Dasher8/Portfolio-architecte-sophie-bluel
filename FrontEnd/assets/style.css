@@ -213,7 +213,8 @@ header {
 }
 
 .login-error-message,
-.img-error-message {
+.img-error-message,
+.img-size-error {
   color: red;
   padding-top: 20px;
 }

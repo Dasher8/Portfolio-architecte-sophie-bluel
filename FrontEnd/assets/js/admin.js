@@ -233,7 +233,7 @@ function createAddModal() {
       // Check file size
       if (file.size > 4 * 1024 * 1024) {
         // 4 MB (4 * 1024 * 1024 bytes)
-        showError("Selected image size exceeds the limit of 4 MB.");
+        showSizeLimitError("Selected image size exceeds the limit of 4 MB.");
         return;
       }
 
@@ -268,6 +268,41 @@ function createAddModal() {
         // Add event listener to remove the error message when user interacts with the addPictureButton
         addPictureButton.addEventListener("change", removeErrorMessage);
       }
+
+      /**
+       * Show error message for exceeding image size limit
+       */
+      function showSizeLimitError(errorMessage) {
+        // Check if an error message with class 'img-size-limit-error' already exists
+        const existingErrorDiv = document.querySelector(
+          ".img-size-limit-error"
+        );
+
+        // If an error message already exists, update its text content
+        if (existingErrorDiv) {
+          existingErrorDiv.textContent = errorMessage;
+          return; // Exit the function to avoid creating duplicate error messages
+        }
+
+        // Create a new div element for the error message
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "img-size-error";
+        errorDiv.textContent = errorMessage;
+
+        const addPictureContainer = document.querySelector(
+          ".add-picture-container"
+        );
+
+        // Insert the error message div after the add picture container
+        addPictureContainer.insertAdjacentElement("afterend", errorDiv);
+
+        // Make sure error message is visible
+        errorDiv.style.display = "block";
+      }
+
+      /**
+       * Upload the image in the modal's image container
+       */
 
       const reader = new FileReader();
       reader.onload = function (e) {
