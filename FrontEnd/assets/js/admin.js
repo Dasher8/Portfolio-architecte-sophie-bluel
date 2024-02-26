@@ -226,16 +226,44 @@ function createAddModal() {
     if (file) {
       // Check file type
       if (!(file.type === "image/jpeg" || file.type === "image/png")) {
-        alert("Please select an image file (jpg, png).");
+        showError("Please select an image file (jpg, png).");
         return;
       }
 
       // Check file size
       if (file.size > 4 * 1024 * 1024) {
         // 4 MB (4 * 1024 * 1024 bytes)
-        alert("Selected image size exceeds the limit of 4 MB.");
+        showError("Selected image size exceeds the limit of 4 MB.");
         return;
       }
+
+      function removeErrorMessage() {
+        const errorDiv = document.querySelector(".img-error-message");
+        // Check if the error message div exists before attempting to remove it
+        if (errorDiv) {
+            errorDiv.remove();
+        }
+    }
+      
+      /**
+       * Show eror message if file type isn't jpeg/png
+       */
+      function showError(errorMessage) {
+        // Create a new div element for the error message
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "img-error-message";
+        errorDiv.textContent = errorMessage;
+    
+        const addModalContent = document.querySelector(".add-modal-content");
+        const addPictureContainer = document.querySelector(".add-picture-container");
+    
+        // Insert the error message div after the img container
+        addPictureContainer.insertAdjacentElement("afterend", errorDiv);
+    
+        // Add event listener to remove the error message when user interacts with the addPictureButton
+        addPictureButton.addEventListener("change", removeErrorMessage);
+    }
+
 
       const reader = new FileReader();
       reader.onload = function (e) {

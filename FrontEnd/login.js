@@ -31,7 +31,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
           // Store the token in localStorage
           localStorage.setItem("authToken", data.token);
           // Redirect to the home page
-          window.location.href = "admin.html"; // Replace with the desired home page URL
+          window.location.href = "admin.html"; // redirects to the admin page
         })
         .catch((error) => {
           console.error("Login failed:", error.message);
@@ -45,11 +45,14 @@ document.getElementById("form").addEventListener("submit", function (event) {
     }
   });
   
+  /**
+   * Show error message if the login or password is invalid
+   */
   
   function showError(errorMessage) {
     // Create a new div element for the error message
     const errorDiv = document.createElement("div");
-    errorDiv.className = "error-message";
+    errorDiv.className = "login-error-message";
     errorDiv.textContent = errorMessage;
   
   
