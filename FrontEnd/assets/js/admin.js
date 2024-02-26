@@ -237,14 +237,18 @@ function createAddModal() {
         return;
       }
 
+      /**
+       * Remove eror message
+       */
+
       function removeErrorMessage() {
         const errorDiv = document.querySelector(".img-error-message");
         // Check if the error message div exists before attempting to remove it
         if (errorDiv) {
-            errorDiv.remove();
+          errorDiv.remove();
         }
-    }
-      
+      }
+
       /**
        * Show eror message if file type isn't jpeg/png
        */
@@ -253,17 +257,17 @@ function createAddModal() {
         const errorDiv = document.createElement("div");
         errorDiv.className = "img-error-message";
         errorDiv.textContent = errorMessage;
-    
-        const addModalContent = document.querySelector(".add-modal-content");
-        const addPictureContainer = document.querySelector(".add-picture-container");
-    
+
+        const addPictureContainer = document.querySelector(
+          ".add-picture-container"
+        );
+
         // Insert the error message div after the img container
         addPictureContainer.insertAdjacentElement("afterend", errorDiv);
-    
+
         // Add event listener to remove the error message when user interacts with the addPictureButton
         addPictureButton.addEventListener("change", removeErrorMessage);
-    }
-
+      }
 
       const reader = new FileReader();
       reader.onload = function (e) {

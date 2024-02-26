@@ -212,11 +212,7 @@ header {
   flex-direction: column;
 }
 
-.login-error-message {
-  color: red;
-  padding-top: 20px;
-}
-
+.login-error-message,
 .img-error-message {
   color: red;
   padding-top: 20px;
