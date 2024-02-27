@@ -535,8 +535,6 @@ input[type="submit"] {
 /*SECOND MODAL*/
 
 .uploaded-image {
-  max-width: 30%;
-  height: 100%;
   overflow: hidden;
 }
 
