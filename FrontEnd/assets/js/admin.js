@@ -331,6 +331,29 @@ function createAddModal() {
 
         const pictureIcon = addPictureContainer.querySelector(".fa-image");
         pictureIcon.style.display = "none";
+
+        // Create the edit file input button
+        const editPictureButton = document.createElement("input");
+        editPictureButton.type = "file";
+        editPictureButton.accept = "image/*";
+        editPictureButton.style.display = "none"; // Hide the default file input button
+
+        // Create the edit button for the image
+        const imgEditButton = document.createElement("button");
+        imgEditButton.classList.add("img-edit-button");
+        imgEditButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+
+        // Add event listener to trigger file input click when the edit button is clicked
+        imgEditButton.addEventListener("click", function () {
+          editPictureButton.click(); // Trigger the click event of the file input
+        });
+
+        // Add event listener to handle file selection
+        editPictureButton.addEventListener("change", handleFileSelect);
+
+        // Append the edit file input button and the edit button to the picture container
+        addPictureContainer.appendChild(editPictureButton);
+        addPictureContainer.appendChild(imgEditButton);
       };
       reader.readAsDataURL(file); // Read the file contents as a data URL
     }
