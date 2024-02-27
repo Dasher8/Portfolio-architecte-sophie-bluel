@@ -560,6 +560,7 @@ input[type="submit"] {
   background: #e8f1f6;
   box-sizing: border-box;
   position: relative;
+  object-fit: contain;
 }
 
 .add-picture-btn {

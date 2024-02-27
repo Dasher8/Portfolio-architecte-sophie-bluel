@@ -238,11 +238,23 @@ function createAddModal() {
       }
 
       /**
-       * Remove eror message
+       * Remove img error message
        */
 
       function removeErrorMessage() {
         const errorDiv = document.querySelector(".img-error-message");
+        // Check if the error message div exists before attempting to remove it
+        if (errorDiv) {
+          errorDiv.remove();
+        }
+      }
+
+      /**
+       * Remove img error message
+       */
+
+      function removeSizeErrorMessage() {
+        const errorDiv = document.querySelector(".img-size-error");
         // Check if the error message div exists before attempting to remove it
         if (errorDiv) {
           errorDiv.remove();
@@ -296,8 +308,8 @@ function createAddModal() {
         // Insert the error message div after the add picture container
         addPictureContainer.insertAdjacentElement("afterend", errorDiv);
 
-        // Make sure error message is visible
-        errorDiv.style.display = "block";
+        // Add event listener to remove the error message when user interacts with the addPictureButton
+        addPictureButton.addEventListener("change", removeSizeErrorMessage);
       }
 
       /**
