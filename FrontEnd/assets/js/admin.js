@@ -348,6 +348,18 @@ function createAddModal() {
           editPictureButton.click(); // Trigger the click event of the file input
         });
 
+        // Add event listener to the edit button for the image
+        imgEditButton.addEventListener("click", function () {
+          event.preventDefault();
+          // Check if an image already exists in the container
+          const existingImage =
+            addPictureContainer.querySelector(".uploaded-image");
+          if (existingImage) {
+            // If an image exists, remove it
+            addPictureContainer.removeChild(existingImage);
+          }
+        });
+
         // Add event listener to handle file selection
         editPictureButton.addEventListener("change", handleFileSelect);
 
