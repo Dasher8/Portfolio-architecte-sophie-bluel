@@ -1,3 +1,4 @@
+//Handles form submission for user login, sends credentials to the server, and redirects on success.
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -45,7 +46,6 @@ document.getElementById("form").addEventListener("submit", function (event) {
 /**
  * Show error message if the login or password is invalid
  */
-
 function showError(errorMessage) {
   // Create a new div element for the error message
   const errorDiv = document.createElement("div");
@@ -63,7 +63,9 @@ function showError(errorMessage) {
   emailInput.addEventListener("input", removeErrorMessage);
   passwordInput.addEventListener("input", removeErrorMessage);
 
-  // Function to remove the error message
+  /**
+   * Function to remove the error message
+   */
   function removeErrorMessage() {
     const errorDiv = document.querySelector(".error-message");
 
