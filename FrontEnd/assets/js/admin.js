@@ -53,7 +53,7 @@ editBtnContainer.appendChild(editButton);
 editButton.addEventListener("click", openModal);
 
 /**
- * Function to create a modal with the ability to close it
+ * Function to create a modal
  */
 function openModal() {
   // Create modal container
@@ -66,7 +66,7 @@ function openModal() {
   modalContent.innerHTML = '<p class="modal-title">Galerie photo</p>';
 
   /**
-   * Function to fetch works from the API and display them in the modal content
+   * Function to fetch works from the API and display them in the modal content with the ability to delete them
    */
   async function displayWorksInModal() {
     try {
@@ -196,7 +196,6 @@ function createAddModal() {
   addPictureContainer.appendChild(photoSizeText);
 
   //create add Picture Button
-  // Create the custom file input button
   addPictureButton = document.createElement("input");
   addPictureButton.type = "file";
   addPictureButton.accept = "image/*";
@@ -315,7 +314,6 @@ function createAddModal() {
       /**
        * Upload the image in the modal's image container
        */
-
       const reader = new FileReader();
       reader.onload = function (e) {
         // Create an image element to display the selected image
@@ -506,6 +504,10 @@ function createAddModal() {
     }
   });
 
+
+  // Create the add modal when the page loads
+createAddModal();
+
   /**
    * Handles form submission for adding a new work to the API.
    * Collects title, category, and file data from the form,
@@ -571,5 +573,4 @@ function createAddModal() {
   }
 }
 
-// Create the add modal when the page loads
-createAddModal();
+
