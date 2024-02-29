@@ -504,10 +504,6 @@ function createAddModal() {
     }
   });
 
-
-  // Create the add modal when the page loads
-createAddModal();
-
   /**
    * Handles form submission for adding a new work to the API.
    * Collects title, category, and file data from the form,
@@ -573,4 +569,5 @@ createAddModal();
   }
 }
 
-
+// Create the add modal when the page loads
+createAddModal();
