@@ -536,9 +536,14 @@ function createAddModal() {
       if (response.ok) {
         // Work successfully added to API, update website
         const newWork = await response.json();
-        addWorkToWebsite(newWork);
+        // Close Add Modal
+        closeAddModal();
         // Reopen the main modal
         openModal();
+        //Add work to works-container
+        addWorkToWorksContainer(newWork);
+        // Add work to gallery
+        addWorkToGallery(newWork);
       } else {
         console.error("Failed to add work to API");
       }
@@ -548,9 +553,32 @@ function createAddModal() {
   }
 
   /**
+   * Function to add new work to the gallery
+   */
+  function addWorkToGallery(work) {
+    // Find the gallery container element
+    const galleryContainer = document.querySelector(".gallery");
+
+    // Check if the gallery container element exists
+    if (galleryContainer) {
+      // Create image element
+      const image = document.createElement("img");
+      image.src = work.imageUrl;
+      image.alt = work.title;
+      image.classList.add("gallery-img");
+      image.setAttribute("id", work.categoryId);
+
+      // Append image to the gallery container
+      galleryContainer.appendChild(image);
+    } else {
+      console.error("Gallery container not found. Cannot add work to gallery.");
+    }
+  }
+
+  /**
    * Function to add new work to the website
    */
-  function addWorkToWebsite(work) {
+  function addWorkToWorksContainer(work) {
     // Find the works container element
     const worksContainer = document.querySelector(".works-container");
 
