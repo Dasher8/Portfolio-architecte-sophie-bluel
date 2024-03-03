@@ -196,7 +196,7 @@ function createAddModal() {
   addPictureContainer.appendChild(photoSizeText);
 
   //create add Picture Button
-  addPictureButton = document.createElement("input");
+  const addPictureButton = document.createElement("input");
   addPictureButton.type = "file";
   addPictureButton.accept = "image/*";
   addPictureButton.style.display = "none"; // Hide the default file input button
@@ -537,6 +537,8 @@ function createAddModal() {
         // Work successfully added to API, update website
         const newWork = await response.json();
         addWorkToWebsite(newWork);
+        // Reopen the main modal
+        openModal();
       } else {
         console.error("Failed to add work to API");
       }
