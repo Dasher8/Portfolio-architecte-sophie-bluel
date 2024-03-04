@@ -118,6 +118,14 @@ function openModal() {
               // Remove both image and delete button from the DOM
               worksContainer.removeChild(image);
               worksContainer.removeChild(deleteButton);
+
+              // Remove the image from the gallery
+              const galleryImage = document.querySelector(
+                `.gallery img[id="${work.categoryId}"]`
+              );
+              if (galleryImage) {
+                galleryImage.remove();
+              }
             } else {
               console.error("Failed to delete work");
             }
