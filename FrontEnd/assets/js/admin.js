@@ -6,6 +6,21 @@ const token = localStorage.getItem("authToken");
 const editContainer = document.querySelector(".portfolio");
 const worksContainer = document.querySelector(".works-container");
 
+// Add event listener for logout
+const logout = document.querySelector('.logout-link');
+if (logout) {
+  logout.addEventListener("click", function (event) {
+    event.preventDefault();
+    // Remove the token from localStorage
+    localStorage.removeItem("authToken");
+    console.log("Token removed successfully"); // Log success message
+    // Redirect to index.html
+    window.location.href = "index.html";
+  });
+} else {
+  console.error("Logout link not found");
+}
+
 /**
  * Function to close modal
  */
