@@ -28,8 +28,8 @@ document.getElementById("form").addEventListener("submit", function (event) {
         console.log(data);
         // Store the token in localStorage
         localStorage.setItem("authToken", data.token);
-        // Redirect to the home page
-        window.location.href = "admin.html"; // redirects to the admin page
+        // Redirect to the admin page
+        window.location.href = "admin.html";
       })
       .catch((error) => {
         console.error("Login failed:", error.message);
