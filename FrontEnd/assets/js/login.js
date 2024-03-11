@@ -47,6 +47,9 @@ document.getElementById("form").addEventListener("submit", function (event) {
  * Show error message if the login or password is invalid
  */
 function showError(errorMessage) {
+  // Remove any existing error messages
+  removeErrorMessages();
+
   // Create a new div element for the error message
   const errorDiv = document.createElement("div");
   errorDiv.className = "login-error-message";
@@ -67,6 +70,18 @@ function showError(errorMessage) {
    * Function to remove the error message
    */
   function removeErrorMessage() {
+    const errorDiv = document.querySelector(".login-error-message");
+
+    // Check if the error message div exists before attempting to remove it
+    if (errorDiv) {
+      errorDiv.remove();
+    }
+  }
+
+  /**
+   * Remove any existing error messages
+   */
+  function removeErrorMessages() {
     const errorDiv = document.querySelector(".login-error-message");
 
     // Check if the error message div exists before attempting to remove it
