@@ -67,7 +67,7 @@ function showError(errorMessage) {
    * Function to remove the error message
    */
   function removeErrorMessage() {
-    const errorDiv = document.querySelector(".error-message");
+    const errorDiv = document.querySelector(".login-error-message");
 
     // Check if the error message div exists before attempting to remove it
     if (errorDiv) {
