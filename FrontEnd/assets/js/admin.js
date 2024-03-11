@@ -7,7 +7,7 @@ const editContainer = document.querySelector(".portfolio");
 const worksContainer = document.querySelector(".works-container");
 
 // Add event listener for logout
-const logout = document.querySelector('.logout-link');
+const logout = document.querySelector(".logout-link");
 if (logout) {
   logout.addEventListener("click", function (event) {
     event.preventDefault();
@@ -80,6 +80,10 @@ function openModal() {
   modalContent.classList.add("modal-content");
   modalContent.innerHTML = '<p class="modal-title">Galerie photo</p>';
 
+  // Create a new div to hold the works images
+  const worksContainer = document.createElement("div");
+  worksContainer.classList.add("works-container");
+
   /**
    * Function to fetch works from the API and display them in the modal content with the ability to delete them
    */
@@ -93,22 +97,19 @@ function openModal() {
       }
 
       const works = await response.json();
-
-      // Create a new div to hold the works images
-      const worksContainer = document.createElement("div");
-      worksContainer.classList.add("works-container");
-
       // Iterate over the works and create HTML elements for each photo
       works.forEach((work) => {
         // Create image element
-        const image = document.createElement("img");
-        image.src = work.imageUrl;
-        image.alt = work.title;
-        image.classList.add("works-img");
-        image.setAttribute("id", `${work.categoryId}`);
+        const figure = document.createElement("figure");
+        figure.setAttribute("id", `${work.categoryId}`);
+
+        figure.innerHTML = `
+            <img src="${work.imageUrl}" class="works-img" alt="${work.title}" />
+          `;
+
 
         // Append image to the works container
-        worksContainer.appendChild(image);
+        worksContainer.appendChild(figure);
 
         // Create delete button
         const deleteButton = document.createElement("button");
@@ -131,15 +132,15 @@ function openModal() {
 
             if (deleteResponse.ok) {
               // Remove both image and delete button from the DOM
-              worksContainer.removeChild(image);
+              worksContainer.removeChild(figure);
               worksContainer.removeChild(deleteButton);
 
               // Remove the image from the gallery
-              const galleryImage = document.querySelector(
-                `.gallery img[id="${work.categoryId}"]`
+              const galleryFigure = document.querySelector(
+                `.figure[id="${work.categoryId}"]`
               );
-              if (galleryImage) {
-                galleryImage.remove();
+              if (galleryFigure) {
+                galleryContainer.removeChild(figure);
               }
             } else {
               console.error("Failed to delete work");
@@ -176,6 +177,8 @@ function openModal() {
   closeButton.addEventListener("click", closeModal);
 
   modalContent.appendChild(closeButton);
+
+  modalContent.appendChild(worksContainer);
 
   // Append modal content to modal container
   modalContainer.appendChild(modalContent);
@@ -585,14 +588,15 @@ function createAddModal() {
     // Check if the gallery container element exists
     if (galleryContainer) {
       // Create image element
-      const image = document.createElement("img");
-      image.src = work.imageUrl;
-      image.alt = work.title;
-      image.classList.add("gallery-img");
-      image.setAttribute("id", work.categoryId);
+      const figure = document.createElement("figure");
+      figure.setAttribute("id", `${work.categoryId}`);
 
-      // Append image to the gallery container
-      galleryContainer.appendChild(image);
+      figure.innerHTML = `
+                <img src="${work.imageUrl}" alt="${work.title}" />
+                <figcaption>${work.title}</figcaption>
+              `;
+
+      galleryContainer.appendChild(figure);
     } else {
       console.error("Gallery container not found. Cannot add work to gallery.");
     }
@@ -608,14 +612,14 @@ function createAddModal() {
     // Check if the works container element exists
     if (worksContainer) {
       // Create image element
-      const image = document.createElement("img");
-      image.src = work.imageUrl;
-      image.alt = work.title;
-      image.classList.add("works-img");
-      image.setAttribute("id", work.categoryId);
+      const figure = document.createElement("figure");
+      figure.setAttribute("id", `${work.categoryId}`);
 
-      // Append image to the works container
-      worksContainer.appendChild(image);
+      figure.innerHTML = `
+                <img src="${work.imageUrl}" class="works-img" alt="${work.title}" />
+              `;
+
+      worksContainer.appendChild(figure);
     } else {
       console.error("Works container not found. Cannot add work to website.");
     }
