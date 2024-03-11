@@ -259,6 +259,7 @@ header {
   color: #3d3d3d;
   font-weight: 500;
   font-size: 14px;
+  z-index: 99;
 }
 
 section {
@@ -474,6 +475,7 @@ input[type="submit"] {
   height: 102.57px;
   margin: 14px 0px;
   position: relative;
+  object-fit: contain;
 }
 
 .delete-btn {
