@@ -567,7 +567,7 @@ function createAddModal() {
         openModal();
 
         // Add work to gallery
-       addWorkToGallery(newWork);
+        addWorkToGallery(newWork);
       } else {
         console.error("Failed to add work to API");
       }
@@ -599,11 +599,6 @@ function createAddModal() {
       console.error("Gallery container not found. Cannot add work to gallery.");
     }
   }
-
-  /**
-   * Function to add new work to the website
-   */
- 
 }
 
 // Create the add modal when the page loads

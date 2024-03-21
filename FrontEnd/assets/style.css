@@ -188,7 +188,11 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 100px 0;
+  margin: 50px 0;
+}
+
+.login {
+  font-weight: bold;
 }
 
 .instagram-icon {
