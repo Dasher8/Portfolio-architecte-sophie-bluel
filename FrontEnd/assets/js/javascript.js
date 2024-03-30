@@ -54,7 +54,7 @@ const displayWorks = (works) => {
 
   works.forEach((work) => {
     const figure = document.createElement("figure");
-    figure.setAttribute("id", `${work.categoryId}`);
+    figure.setAttribute("id", `${work.id}`);
 
     figure.innerHTML = `
             <img src="${work.imageUrl}" alt="${work.title}" />

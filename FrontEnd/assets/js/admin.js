@@ -101,7 +101,7 @@ function openModal() {
       works.forEach((work) => {
         // Create image element
         const figure = document.createElement("figure");
-        figure.setAttribute("id", `${work.categoryId}`);
+        //figure.setAttribute("id", `${work.categoryId}`);
 
         figure.innerHTML = `
             <img src="${work.imageUrl}" class="works-img" alt="${work.title}" />
@@ -131,15 +131,13 @@ function openModal() {
 
             if (deleteResponse.ok) {
               // Remove both image and delete button from the DOM
-              worksContainer.removeChild(figure);
-              worksContainer.removeChild(deleteButton);
+              worksContainer.remove(figure);
+              worksContainer.remove(deleteButton);
 
               // Remove the image from the gallery
-              const galleryFigure = document.querySelector(
-                `figure[id="${work.categoryId}"]`
-              );
+              const galleryFigure = document.getElementById(work.id);
               if (galleryFigure) {
-                galleryContainer.removeChild(figure);
+                galleryContainer.remove(figure);
               }
             } else {
               console.error("Failed to delete work");
