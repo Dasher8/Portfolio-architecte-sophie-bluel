@@ -48,7 +48,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
  */
 function showError(errorMessage) {
   // Remove any existing error messages
-  removeErrorMessages();
+  removeErrorMessage();
 
   // Create a new div element for the error message
   const errorDiv = document.createElement("div");
@@ -66,22 +66,12 @@ function showError(errorMessage) {
   emailInput.addEventListener("input", removeErrorMessage);
   passwordInput.addEventListener("input", removeErrorMessage);
 
-  /**
-   * Function to remove the error message
-   */
-  function removeErrorMessage() {
-    const errorDiv = document.querySelector(".login-error-message");
-
-    // Check if the error message div exists before attempting to remove it
-    if (errorDiv) {
-      errorDiv.remove();
-    }
-  }
+ 
 
   /**
    * Remove any existing error messages
    */
-  function removeErrorMessages() {
+  function removeErrorMessage() {
     const errorDiv = document.querySelector(".login-error-message");
 
     // Check if the error message div exists before attempting to remove it
